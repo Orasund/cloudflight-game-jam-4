@@ -1,10 +1,18 @@
-const config: Core.AppConfig = {
-    name: 'Template Project',
+export const config = {
+    canvasWidth: 480,
+    canvasHeight: 320,
 
-    default: {
-        width: 640,
-        height: 480
-    }
-} as const;
+    paddleHeight: 10,
+    paddleWidth: 75,
+    ballRadius: 10,
 
-export default config;
+    brickRowCount: 5,
+    brickColumnCount: 3,
+
+    brickWidth: 75,
+    brickHeight: 20,
+    brickPadding: 10,
+    brickOffsetTop: 30,
+    brickOffsetLeft: 30,
+
+}
