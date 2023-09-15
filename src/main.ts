@@ -1,9 +1,10 @@
 import './style.css'
 import { config } from "./config"
 import * as draw from "./Game/render";
-import * as logic from './Game/logic';
 import { Game } from './Game/types';
 import { Control } from './control';
+import { newGame } from './Game/Logic/game';
+import { tick } from './Game/Logic/main';
 
 //Create Canvas
 const container = document.querySelector('#app') as HTMLDivElement;
@@ -13,7 +14,7 @@ canvas.height = config.canvasHeight;
 container.append(canvas);
 
 //Initiate State
-let game: Game = logic.newGame();
+let game: Game = newGame();
 let control: Control = new Control();
 
 //Add Event Listeners
@@ -33,7 +34,7 @@ function onKeyup(e: { code: string; }) {
 //Start gameloop
 const ctx = canvas.getContext("2d")!
 function nextFrame() {
-    logic.tick(control, game);
+    tick(control, game);
     draw.toCanvas(game, ctx);
     requestAnimationFrame(nextFrame);
 }
