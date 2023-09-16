@@ -1,5 +1,5 @@
-import { config } from "../../config";
-import { Brick, Game } from "../types";
+import { Brick, Game } from "../Game/types";
+import { config } from "../config";
 
 export function newGame(): Game {
     let bricks: Brick[][] = []
@@ -17,7 +17,9 @@ export function newGame(): Game {
         }
     }
     return {
-        paddleX: (config.canvasWidth - config.paddleWidth) / 2,
+        paddle: {
+            x: (config.canvasWidth - config.paddleWidth) / 2
+        },
         bricks: bricks,
         score: 0,
         lives: 3,
@@ -26,7 +28,8 @@ export function newGame(): Game {
             dy: -2,
             x: config.canvasWidth / 2,
             y: config.canvasHeight - 30,
-        }
+        },
+        end: undefined
     }
 }
 
@@ -35,7 +38,14 @@ export function restart(game: Game) {
     game.ball.y = config.canvasHeight - 30;
     game.ball.dx = 2;
     game.ball.dy = -2;
-    game.paddleX = (config.canvasWidth - config.paddleWidth) / 2;
+    game.paddle.x = (config.canvasWidth - config.paddleWidth) / 2;
+}
+
+export function gameOver(game: Game) {
+    game.end = "lost";
+}
+export function gameWon(game: Game) {
+    game.end = "won"
 }
 
 export function collisionDetection(game: Game) {
@@ -52,8 +62,7 @@ export function collisionDetection(game: Game) {
                     b.status = 0;
                     game.score++;
                     if (game.score == config.brickRowCount * config.brickColumnCount) {
-                        alert("YOU WIN, CONGRATS!");
-                        document.location.reload();
+                        gameWon(game)
                     }
                 }
             }

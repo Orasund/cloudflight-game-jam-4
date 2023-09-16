@@ -3,8 +3,9 @@ import { config } from "./config"
 import * as draw from "./Game/render";
 import { Game } from './Game/types';
 import { Control } from './control';
-import { newGame } from './Game/Logic/game';
-import { tick } from './Game/Logic/main';
+import { newGame } from './Logic/game';
+import { tick } from './Logic/main';
+import { ImagePool } from './imagePool';
 
 //Create Canvas
 const container = document.querySelector('#app') as HTMLDivElement;

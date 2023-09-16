@@ -1,6 +1,6 @@
 export interface Brick {
-    x: number;
-    y: number;
+    x: number,
+    y: number,
     status: number
 }
 export interface Ball {
@@ -9,10 +9,14 @@ export interface Ball {
     x: number,
     y: number
 }
+export interface Paddle {
+    x: number
+}
 export interface Game {
-    paddleX: number,
+    paddle: Paddle,
     bricks: Brick[][],
     score: number,
     lives: number,
-    ball: Ball
+    ball: Ball,
+    end: "won" | "lost" | undefined;
 }

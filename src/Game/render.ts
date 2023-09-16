@@ -1,19 +1,20 @@
 import { Canvas } from "../canvas";
 import { Game } from "./types";
 import { config } from "../config";
+import { ImageSource } from "./imageSource";
 
 function drawBricks(game: Game, canvas: Canvas) {
     for (var c = 0; c < config.brickColumnCount; c++) {
         for (var r = 0; r < config.brickRowCount; r++) {
             if (game.bricks[c][r].status == 1) {
-                canvas.rect({
+                canvas.image({
+                    source: ImageSource.Brick1,
                     center:
                         [game.bricks[c][r].x + config.brickWidth / 2,
                         game.bricks[c][r].y + config.brickHeight / 2
                         ],
                     width: config.brickWidth,
                     height: config.brickHeight,
-                    color: "#0095DD"
                 })
             }
         }
@@ -37,12 +38,15 @@ export function toCanvas(game: Game, ctx: CanvasRenderingContext2D) {
 
     drawBricks(game, canvas);
     canvas.circle({
-        center: [game.x, game.y],
+        center: [game.ball.x, game.ball.y],
         radius: config.ballRadius,
         color: "#0095DD"
     })
         .rect({
-            center: [game.paddleX + config.paddleWidth / 2, config.canvasHeight - config.paddleHeight / 2],
+            center: [
+                game.paddle.x + config.paddleWidth / 2,
+                config.canvasHeight - config.paddleHeight / 2
+            ],
             width: config.paddleWidth,
             height: config.paddleHeight,
             color: "#0095DD"

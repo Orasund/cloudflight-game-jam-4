@@ -1,6 +1,7 @@
-import { config } from "../../config";
-import { Game } from "../types";
-import { restart } from "./game";
+
+import { Game } from "../Game/types";
+import { config } from "../config";
+import { gameOver, restart } from "./game";
 
 export function updateBall(game: Game) {
     if (game.ball.x + game.ball.dx > config.canvasWidth - config.ballRadius ||
@@ -11,14 +12,15 @@ export function updateBall(game: Game) {
         game.ball.dy = -game.ball.dy;
     }
     else if (game.ball.y + game.ball.dy > config.canvasHeight - config.ballRadius) {
-        if (game.ball.x > game.paddleX && game.ball.x < game.paddleX + config.paddleWidth) {
+        if (game.ball.x > game.paddle.x &&
+            game.ball.x < game.paddle.x + config.paddleWidth
+        ) {
             game.ball.dy = -game.ball.dy;
         }
         else {
             game.lives--;
             if (!game.lives) {
-                alert("GAME OVER");
-                document.location.reload();
+                gameOver(game)
             }
             else {
                 restart(game)
