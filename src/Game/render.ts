@@ -20,21 +20,21 @@ function drawBricks(game: Game, canvas: Canvas) {
         }
     }
 }
-function drawScore(game: Game, ctx: CanvasRenderingContext2D) {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "#0095DD";
-    ctx.fillText("Score: " + game.score, 8, 20);
-}
-function drawLives(game: Game, ctx: CanvasRenderingContext2D) {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "#0095DD";
-    ctx.fillText("Lives: " + game.lives, config.canvasWidth - 65, 20);
-}
+
 
 export function toCanvas(game: Game, ctx: CanvasRenderingContext2D) {
     ctx.clearRect(0, 0, config.canvasWidth, config.canvasHeight);
 
     const canvas = new Canvas(ctx);
+
+    switch (game.end) {
+        case "won":
+            canvas.title("Game Won", [config.canvasWidth / 2 - 150, config.canvasHeight / 2])
+            return;
+        case "lost":
+            canvas.title("Game Lost", [config.canvasWidth / 2 - 150, config.canvasHeight / 2])
+            return;
+    }
 
     drawBricks(game, canvas);
     canvas.circle({
@@ -51,9 +51,7 @@ export function toCanvas(game: Game, ctx: CanvasRenderingContext2D) {
             height: config.paddleHeight,
             color: "#0095DD"
         })
-    drawScore(game, ctx);
-    drawLives(game, ctx);
-
-
+    canvas.text("Score: " + game.score, [8, 20]);
+    canvas.text("Lives: " + game.lives, [config.canvasWidth - 65, 20]);
 
 }

@@ -5,7 +5,6 @@ import { Game } from './Game/types';
 import { Control } from './control';
 import { newGame } from './Logic/game';
 import { tick } from './Logic/main';
-import { ImagePool } from './imagePool';
 
 //Create Canvas
 const container = document.querySelector('#app') as HTMLDivElement;

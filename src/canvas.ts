@@ -36,12 +36,12 @@ export class Canvas {
         this.ctx.closePath();
         return this;
     }
-    text(pos: number[], value: string) {
+    text(value: string, pos: number[]) {
         return this.textWithArgs({ pos, value })
 
     }
-    title(pos: number[], value: string) {
-        return this.textWithArgs({ pos, value, size: 32 })
+    title(value: string, pos: number[]) {
+        return this.textWithArgs({ pos, value, size: 64 })
     }
     textWithArgs(args: {
         value: string,

@@ -1,5 +1,6 @@
 import { Brick, Game } from "../Game/types";
 import { config } from "../config";
+import { playBounceSound } from "../sound";
 
 export function newGame(): Game {
     let bricks: Brick[][] = []
@@ -61,6 +62,7 @@ export function collisionDetection(game: Game) {
                     game.ball.dy = -game.ball.dy;
                     b.status = 0;
                     game.score++;
+                    playBounceSound();
                     if (game.score == config.brickRowCount * config.brickColumnCount) {
                         gameWon(game)
                     }
