@@ -1,13 +1,14 @@
 import { Game } from '../Game/types';
 import { Control } from '../control';
+import { Sound } from '../sound';
 import { updateBall } from './ball';
 import { collisionDetection } from './game';
 import { movePaddle } from './paddle';
 
-export function tick(control: Control, game: Game) {
-    if (game.end!!)
+export function tick(args: { control: Control, sound: Sound, game: Game }) {
+    if (args.game.end!!)
         return;
-    movePaddle(control, game);
-    collisionDetection(game);
-    updateBall(game)
+    movePaddle(args.control, args.game);
+    collisionDetection(args.game, args.sound);
+    updateBall(args.game, args.sound)
 }

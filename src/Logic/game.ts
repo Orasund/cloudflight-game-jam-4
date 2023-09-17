@@ -1,6 +1,7 @@
+import { SoundSource } from "../Game/soundSource";
 import { Brick, Game } from "../Game/types";
 import { config } from "../config";
-import { playBounceSound } from "../sound";
+import { Sound } from "../sound";
 
 export function newGame(): Game {
     let bricks: Brick[][] = []
@@ -49,7 +50,7 @@ export function gameWon(game: Game) {
     game.end = "won"
 }
 
-export function collisionDetection(game: Game) {
+export function collisionDetection(game: Game, sound: Sound) {
     for (var c = 0; c < config.brickColumnCount; c++) {
         for (var r = 0; r < config.brickRowCount; r++) {
             var b = game.bricks[c][r];
@@ -62,7 +63,7 @@ export function collisionDetection(game: Game) {
                     game.ball.dy = -game.ball.dy;
                     b.status = 0;
                     game.score++;
-                    playBounceSound();
+                    sound.play(SoundSource.Bounce);
                     if (game.score == config.brickRowCount * config.brickColumnCount) {
                         gameWon(game)
                     }

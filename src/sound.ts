@@ -1,15 +1,33 @@
-const audioContext = new AudioContext();
+import { SoundSource } from "./Game/soundSource";
 
-const audio = new Audio();
-audio.src = "assets/sounds/bounce.mp3";
 
-audioContext.createMediaElementSource(audio)
-    .connect(audioContext.destination);;
+export class Sound {
+    pool: Map<SoundSource, HTMLAudioElement> = new Map();
+    ctx = new AudioContext();
+    amountLoaded = 0;
 
-export function playBounceSound() {
-    if (audioContext.state === "suspended") {
-        audioContext.resume();
+    constructor() {
+        Object.values(SoundSource).map((source) =>
+            this.pool.set(source, this.newAudio(source))
+        )
     }
-    audio.load();
-    audio.play();
+
+    newAudio(source: String) {
+        const audio = new Audio();
+        this.ctx.createMediaElementSource(audio)
+            .connect(this.ctx.destination);
+        audio.src = "assets/sounds/" + source + ".mp3";
+        audio.oncanplay = () => this.amountLoaded++
+        return audio;
+    }
+
+    play(soundSource: SoundSource) {
+        if (this.ctx.state === "suspended") {
+            this.ctx.resume();
+        }
+
+        const audio = this.pool.get(soundSource)!
+        audio.load();
+        audio.play();
+    }
 }
