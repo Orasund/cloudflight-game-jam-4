@@ -10,6 +10,9 @@ function drawBricks(game: Game, canvas: Canvas) {
             if (game.bricks[c][r].isVisible == true) {
                 brick_source = ImageSource.Brick1
             }
+            if (game.bricks[c][r].cellType == "goal") {
+                brick_source = ImageSource.Brick2;
+            }
 
             canvas.image({
                 source: brick_source,

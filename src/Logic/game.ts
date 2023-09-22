@@ -1,5 +1,5 @@
 import { SoundSource } from "../Game/soundSource";
-import { Ball, Brick, Game } from "../Game/types";
+import { Ball, Brick, CellType, Game } from "../Game/types";
 import { config } from "../config";
 import { Sound } from "../sound";
 
@@ -10,12 +10,16 @@ export function newGame(): Game {
         for (var r = 0; r < config.brickRowCount; r++) {
             var brickX = (r * (config.brickWidth + config.brickPadding)) + config.brickOffsetLeft;
             var brickY = (c * (config.brickHeight + config.brickPadding)) + config.brickOffsetTop;
-
+            let cellType: CellType = "obstacle";
+            if (r < 3) {
+                cellType = "goal";
+            }
             bricks[c][r] = {
                 x: brickX,
                 y: brickY,
                 isVisible: false,
-                lastClicKTick: 0
+                lastClicKTick: 0,
+                cellType: cellType,
             };
         }
     }

@@ -2,8 +2,10 @@ export interface Brick {
     x: number,
     y: number,
     isVisible: boolean,
-    lastClicKTick: number
+    lastClicKTick: number,
+    cellType: CellType;
 }
+export type CellType = "obstacle" | "goal"
 export interface Ball {
     dx: number,
     dy: number,
