@@ -1,7 +1,8 @@
 export interface Brick {
     x: number,
     y: number,
-    isVisible: boolean
+    isVisible: boolean,
+    lastClicKTick: number
 }
 export interface Ball {
     dx: number,
@@ -18,5 +19,6 @@ export interface Game {
     score: number,
     lives: number,
     ball: Ball,
-    end: "won" | "lost" | undefined;
+    end: "won" | "lost" | undefined,
+    currentTick: number;
 }

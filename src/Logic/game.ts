@@ -14,7 +14,8 @@ export function newGame(): Game {
             bricks[c][r] = {
                 x: brickX,
                 y: brickY,
-                isVisible: 1
+                isVisible: false,
+                lastClicKTick: 0
             };
         }
     }
@@ -54,7 +55,7 @@ export function collisionDetection(game: Game, sound: Sound) {
     for (var c = 0; c < config.brickColumnCount; c++) {
         for (var r = 0; r < config.brickRowCount; r++) {
             var b = game.bricks[c][r];
-            if (b.isVisible == 1) {
+            if (b.isVisible == true) {
                 if (game.ball.x > b.x &&
                     game.ball.x < b.x + config.brickWidth &&
                     game.ball.y > b.y &&
