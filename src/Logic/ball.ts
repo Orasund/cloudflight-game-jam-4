@@ -9,21 +9,10 @@ export function updateBalls(game: Game) {
             ball.dx = -ball.dx;
             //sound.play(SoundSource.Bounce);
         }
-        if (ball.y + ball.dy < config.ballRadius) {
+        if (ball.y + ball.dy > config.canvasHeight - config.ballRadius ||
+            ball.y + ball.dy < config.ballRadius) {
             ball.dy = -ball.dy;
             //sound.play(SoundSource.Bounce);
-        }
-        else if (ball.y + ball.dy > config.canvasHeight - config.ballRadius) {
-            if (ball.x > game.paddle.x &&
-                ball.x < game.paddle.x + config.paddleWidth
-            ) {
-                ball.dy = -ball.dy;
-                //sound.play(SoundSource.Bounce);
-            }
-            else {
-                ball.dx = -ball.dx;
-                //sound.play(SoundSource.Bounce);
-            }
         }
         ball.x += ball.dx;
         ball.y += ball.dy;
