@@ -65,7 +65,6 @@ export function collisionDetection(game: Game, sound: Sound) {
                         ball.y < b.y + config.brickHeight
                     ) {
                         ball.dy = -ball.dy;
-                        game.score++;
                         sound.play(SoundSource.Bounce);
                         if (game.score == config.brickRowCount * config.brickColumnCount) {
                             gameWon(game)

@@ -1,7 +1,6 @@
 
 import { Game } from "../Game/types";
 import { config } from "../config";
-import { gameOver, restart } from "./game";
 
 export function updateBalls(game: Game) {
     game.balls.forEach(ball => {
@@ -22,13 +21,8 @@ export function updateBalls(game: Game) {
                 //sound.play(SoundSource.Bounce);
             }
             else {
-                game.lives--;
-                if (!game.lives) {
-                    gameOver(game)
-                }
-                else {
-                    restart(game)
-                }
+                ball.dx = -ball.dx;
+                //sound.play(SoundSource.Bounce);
             }
         }
         ball.x += ball.dx;
