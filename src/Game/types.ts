@@ -1,7 +1,7 @@
 export interface Brick {
     x: number,
     y: number,
-    status: number
+    isVisible: boolean
 }
 export interface Ball {
     dx: number,
