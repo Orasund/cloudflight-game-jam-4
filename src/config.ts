@@ -1,18 +1,23 @@
+const canvasHeight = 400;
+const canvasWidth = 700;
+const brickRowCount = 11;
+const brickColumnCount = 4;
+
 export const config = {
-    canvasWidth: 700,
-    canvasHeight: 400,
+    canvasWidth: canvasWidth,
+    canvasHeight: canvasHeight,
 
     paddleHeight: 10,
     paddleWidth: 75,
     ballRadius: 10,
 
-    brickRowCount: 11,
-    brickColumnCount: 4,
+    brickRowCount: brickRowCount,
+    brickColumnCount: brickColumnCount,
 
-    brickWidth: 50,
-    brickHeight: 50,
-    brickPadding: 10,
-    brickOffsetTop: 30,
-    brickOffsetLeft: 30,
+    brickWidth: 25,
+    brickHeight: 25,
+    brickPadding: 0,
+    brickOffsetTop: 0,
+    brickOffsetLeft: 0,
 
 }
