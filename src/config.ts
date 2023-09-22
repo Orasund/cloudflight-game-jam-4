@@ -10,11 +10,11 @@ export const config = {
     paddleWidth: 75,
     ballRadius: 10,
 
-    brickRowCount: Math.floor(canvasHeight / brickSize),
-    brickColumnCount: Math.floor(canvasWidth / brickSize),
+    brickRowCount: Math.floor(canvasWidth / brickSize),
+    brickColumnCount: Math.floor(canvasHeight / brickSize),
 
-    brickWidth: 25,
-    brickHeight: 25,
+    brickWidth: brickSize,
+    brickHeight: brickSize,
     brickPadding: 0,
     brickOffsetTop: 0,
     brickOffsetLeft: 0,
