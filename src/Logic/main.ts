@@ -3,7 +3,6 @@ import { config } from '../config';
 import { Control } from '../control';
 import { Sound } from '../sound';
 import { updateBalls } from './ball';
-import { collisionDetection } from './game';
 import { movePaddle } from './paddle';
 
 
@@ -35,7 +34,6 @@ export function tick(args: { control: Control, sound: Sound, game: Game }) {
 
     args.game.currentTick++;
     movePaddle(args.control, args.game);
-    collisionDetection(args.game, args.sound);
     updateBalls(args.game)
     clickedBricks(args.game, args.control)
 

@@ -1,5 +1,5 @@
 import { SoundSource } from "../Game/soundSource";
-import { Brick, Game } from "../Game/types";
+import { Ball, Brick, Game } from "../Game/types";
 import { config } from "../config";
 import { Sound } from "../sound";
 
@@ -19,6 +19,12 @@ export function newGame(): Game {
             };
         }
     }
+    let balls: Ball[] = [{
+        dx: 2,
+        dy: -2,
+        x: config.canvasWidth / 2,
+        y: config.canvasHeight / 2,
+    }]
     return {
         paddle: {
             x: (config.canvasWidth - config.paddleWidth) / 2
@@ -26,12 +32,7 @@ export function newGame(): Game {
         bricks: bricks,
         score: 0,
         lives: 3,
-        balls: [{
-            dx: 2,
-            dy: -2,
-            x: config.canvasWidth / 2,
-            y: config.canvasHeight - 30,
-        }],
+        balls: balls,
         end: undefined,
         currentTick: 0
     }
@@ -53,8 +54,4 @@ export function gameOver(game: Game) {
 }
 export function gameWon(game: Game) {
     game.end = "won"
-}
-
-export function collisionDetection(game: Game, sound: Sound) {
-
 }
