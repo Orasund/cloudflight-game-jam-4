@@ -56,26 +56,5 @@ export function gameWon(game: Game) {
 }
 
 export function collisionDetection(game: Game, sound: Sound) {
-    for (var c = 0; c < config.brickColumnCount; c++) {
-        for (var r = 0; r < config.brickRowCount; r++) {
-            var b = game.bricks[c][r];
-            if (b.isVisible == true) {
-                game.balls.forEach(ball => {
-                    if (ball.x > b.x &&
-                        ball.x < b.x + config.brickWidth &&
-                        ball.y > b.y &&
-                        ball.y < b.y + config.brickHeight
-                    ) {
-                        ball.dy = -ball.dy;
-                        sound.play(SoundSource.Bounce);
-                        if (game.score == config.brickRowCount * config.brickColumnCount) {
-                            gameWon(game)
-                        }
-                    }
-                }
-                )
 
-            }
-        }
-    }
 }
