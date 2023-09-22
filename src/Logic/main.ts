@@ -6,6 +6,9 @@ import { collisionDetection } from './game';
 import { movePaddle } from './paddle';
 
 export function tick(args: { control: Control, sound: Sound, game: Game }) {
+    if (args.control.clicked) {
+        const [x, y] = args.control.mousePos;
+    }
     if (args.game.end!!)
         return;
     movePaddle(args.control, args.game);

@@ -3,10 +3,26 @@ type Key = "Down" | "Left" | "Right" | "Up"
 export class Control {
     pressed: Set<Key>;
     mousePos: number[];
+    mouseDown: Boolean;
+    clicked: Boolean;
 
     constructor() {
         this.pressed = new Set<Key>();
         this.mousePos = [0, 0];
+        this.mouseDown = false;
+        this.clicked = false;
+    }
+
+    mouseInArea(args: { center: number[], width: number, height: number }) {
+        const [x, y] = this.mousePos;
+        const [cX, cY] = args.center;
+
+        const minX = cX - args.width / 2;
+        const minY = cY - args.height / 2;
+        const maxX = cX + args.width / 2;
+        const maxY = cY + args.height / 2;
+
+        return minX <= x && x <= maxX && minY <= y && y <= maxY
     }
 
     keyDownHandler(e: { code: string; }) {

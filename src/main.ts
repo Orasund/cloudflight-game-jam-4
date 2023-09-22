@@ -23,6 +23,9 @@ let sound: Sound = new Sound();
 document.addEventListener("keydown", onKeydown, false);
 document.addEventListener("keyup", onKeyup, false);
 document.addEventListener("mousemove", control.mouseMoveHandler(canvas), false);
+document.addEventListener("mousedown", () => control.mouseDown = true);
+document.addEventListener("mouseup", () => control.mouseDown = false);
+document.addEventListener("click", () => control.clicked = true);
 
 function onKeydown(e: { code: string; }) {
     control.keyDownHandler(e)
@@ -38,6 +41,7 @@ const ctx = canvas.getContext("2d")!
 function nextFrame() {
     tick({ control, game, sound });
     draw.toCanvas(game, ctx);
+    control.clicked = false;
     requestAnimationFrame(nextFrame);
 }
 nextFrame();
