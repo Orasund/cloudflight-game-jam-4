@@ -6,7 +6,7 @@ import { ImageSource } from "./imageSource";
 function drawBricks(game: Game, canvas: Canvas) {
     for (var c = 0; c < config.brickColumnCount; c++) {
         for (var r = 0; r < config.brickRowCount; r++) {
-            if (game.bricks[c][r].status == 1) {
+            if (game.bricks[c][r].isVisible == true) {
                 canvas.image({
                     source: ImageSource.Brick1,
                     center:

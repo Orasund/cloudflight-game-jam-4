@@ -20,8 +20,8 @@ function clickedBricks(game: Game, controls: Control) {
                     ],
                 width: config.brickWidth,
                 height: config.brickHeight,
-            })) {
-                game.bricks[c][r].status = 0;
+            }) && controls.clicked) {
+                game.bricks[c][r].isVisible = !game.bricks[c][r].isVisible;
             }
 
         }
