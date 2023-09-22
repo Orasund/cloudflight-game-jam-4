@@ -40,11 +40,14 @@ export function toCanvas(game: Game, ctx: CanvasRenderingContext2D) {
     }
 
     drawBricks(game, canvas);
-    canvas.circle({
-        center: [game.ball.x, game.ball.y],
-        radius: config.ballRadius,
-        color: "#0095DD"
+    game.balls.forEach(ball => {
+        canvas.circle({
+            center: [ball.x, ball.y],
+            radius: config.ballRadius,
+            color: "#0095DD"
+        })
     })
+    canvas
         .rect({
             center: [
                 game.paddle.x + config.paddleWidth / 2,

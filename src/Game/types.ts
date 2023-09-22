@@ -18,7 +18,7 @@ export interface Game {
     bricks: Brick[][],
     score: number,
     lives: number,
-    ball: Ball,
-    end: "won" | "lost" | undefined,
+    balls: Ball[],
+    end: "won" | "lost" | undefined;
     currentTick: number;
 }

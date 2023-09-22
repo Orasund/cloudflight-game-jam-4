@@ -26,21 +26,24 @@ export function newGame(): Game {
         bricks: bricks,
         score: 0,
         lives: 3,
-        ball: {
+        balls: [{
             dx: 2,
             dy: -2,
             x: config.canvasWidth / 2,
             y: config.canvasHeight - 30,
-        },
+        }],
         end: undefined
     }
 }
 
 export function restart(game: Game) {
-    game.ball.x = config.canvasWidth / 2;
-    game.ball.y = config.canvasHeight - 30;
-    game.ball.dx = 2;
-    game.ball.dy = -2;
+    game.balls.forEach(ball => {
+        ball.x = config.canvasWidth / 2;
+        ball.y = config.canvasHeight - 30;
+        ball.dx = 2;
+        ball.dy = -2;
+    })
+
     game.paddle.x = (config.canvasWidth - config.paddleWidth) / 2;
 }
 
@@ -56,18 +59,21 @@ export function collisionDetection(game: Game, sound: Sound) {
         for (var r = 0; r < config.brickRowCount; r++) {
             var b = game.bricks[c][r];
             if (b.isVisible == true) {
-                if (game.ball.x > b.x &&
-                    game.ball.x < b.x + config.brickWidth &&
-                    game.ball.y > b.y &&
-                    game.ball.y < b.y + config.brickHeight
-                ) {
-                    game.ball.dy = -game.ball.dy;
-                    game.score++;
-                    sound.play(SoundSource.Bounce);
-                    if (game.score == config.brickRowCount * config.brickColumnCount) {
-                        gameWon(game)
+                game.balls.forEach(ball => {
+                    if (ball.x > b.x &&
+                        ball.x < b.x + config.brickWidth &&
+                        ball.y > b.y &&
+                        ball.y < b.y + config.brickHeight
+                    ) {
+                        ball.dy = -ball.dy;
+                        sound.play(SoundSource.Bounce);
+                        if (game.score == config.brickRowCount * config.brickColumnCount) {
+                            gameWon(game)
+                        }
                     }
                 }
+                )
+
             }
         }
     }
