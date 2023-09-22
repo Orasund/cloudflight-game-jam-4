@@ -6,17 +6,20 @@ import { ImageSource } from "./imageSource";
 function drawBricks(game: Game, canvas: Canvas) {
     for (var c = 0; c < config.brickColumnCount; c++) {
         for (var r = 0; r < config.brickRowCount; r++) {
+            let brick_source = ImageSource.BrickInvisible;
             if (game.bricks[c][r].isVisible == true) {
-                canvas.image({
-                    source: ImageSource.Brick1,
-                    center:
-                        [game.bricks[c][r].x + config.brickWidth / 2,
-                        game.bricks[c][r].y + config.brickHeight / 2
-                        ],
-                    width: config.brickWidth,
-                    height: config.brickHeight,
-                })
+                brick_source = ImageSource.Brick1
             }
+
+            canvas.image({
+                source: brick_source,
+                center:
+                    [game.bricks[c][r].x + config.brickWidth / 2,
+                    game.bricks[c][r].y + config.brickHeight / 2
+                    ],
+                width: config.brickWidth,
+                height: config.brickHeight,
+            })
         }
     }
 }
