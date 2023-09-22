@@ -1,7 +1,5 @@
-import { SoundSource } from "../Game/soundSource";
 import { Ball, Brick, CellType, Game } from "../Game/types";
 import { config } from "../config";
-import { Sound } from "../sound";
 
 export function newGame(): Game {
     let bricks: Brick[][] = []
@@ -23,12 +21,12 @@ export function newGame(): Game {
             };
         }
     }
-    let balls: Ball[] = [{
-        dx: 2,
-        dy: -2,
+    let balls: Ball[] = Array(3).fill({
+        dx: 2 + Math.random(),
+        dy: -2 + Math.random(),
         x: config.canvasWidth / 2,
         y: config.canvasHeight / 2,
-    }]
+    })
     return {
         paddle: {
             x: (config.canvasWidth - config.paddleWidth) / 2
