@@ -32,7 +32,8 @@ export function newGame(): Game {
             x: config.canvasWidth / 2,
             y: config.canvasHeight - 30,
         }],
-        end: undefined
+        end: undefined,
+        currentTick: 0
     }
 }
 

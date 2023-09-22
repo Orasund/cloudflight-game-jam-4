@@ -21,7 +21,7 @@ function clickedBricks(game: Game, controls: Control) {
                     ],
                 width: config.brickWidth,
                 height: config.brickHeight,
-            }) && controls.mouseDown && lastClickTickDiff < 3 * 60) {
+            }) && controls.mouseDown && lastClickTickDiff > 3 * 60) {
                 game.bricks[c][r].isVisible = !game.bricks[c][r].isVisible;
                 game.bricks[c][r].lastClicKTick = game.currentTick;
             }
