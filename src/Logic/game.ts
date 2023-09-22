@@ -11,7 +11,7 @@ export function newGame(): Game {
             var brickX = (r * (config.brickWidth + config.brickPadding)) + config.brickOffsetLeft;
             var brickY = (c * (config.brickHeight + config.brickPadding)) + config.brickOffsetTop;
             let cellType: CellType = "obstacle";
-            if (r < 3) {
+            if (c == 0 && r < 5) {
                 cellType = "goal";
             }
             bricks[c][r] = {

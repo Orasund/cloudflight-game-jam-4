@@ -21,12 +21,16 @@ export function updateBalls(game: Game) {
         for (var c = 0; c < config.brickColumnCount; c++) {
             for (var r = 0; r < config.brickRowCount; r++) {
                 var b = game.bricks[c][r];
-                if (b.isVisible == true) {
-                    if (ball.x > b.x - config.ballRadius &&
-                        ball.x < b.x + config.brickWidth + config.ballRadius &&
-                        ball.y > b.y - config.ballRadius &&
-                        ball.y < b.y + config.brickHeight + config.ballRadius
-                    ) {
+                if (ball.x > b.x - config.ballRadius &&
+                    ball.x < b.x + config.brickWidth + config.ballRadius &&
+                    ball.y > b.y - config.ballRadius &&
+                    ball.y < b.y + config.brickHeight + config.ballRadius
+                ) {
+                    if (b.cellType == "goal") {
+                        game.end = "won"
+
+                    }
+                    if (b.isVisible == true) {
                         const centerX = b.x + config.brickWidth / 2;
                         const centerY = b.y + config.brickHeight / 2;
 
