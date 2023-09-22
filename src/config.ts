@@ -1,7 +1,6 @@
 const canvasHeight = 400;
 const canvasWidth = 700;
-const brickRowCount = 11;
-const brickColumnCount = 4;
+const brickSize = 25;
 
 export const config = {
     canvasWidth: canvasWidth,
@@ -11,8 +10,8 @@ export const config = {
     paddleWidth: 75,
     ballRadius: 10,
 
-    brickRowCount: brickRowCount,
-    brickColumnCount: brickColumnCount,
+    brickRowCount: Math.floor(canvasHeight / brickSize),
+    brickColumnCount: Math.floor(canvasWidth / brickSize),
 
     brickWidth: 25,
     brickHeight: 25,
