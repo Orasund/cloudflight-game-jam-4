@@ -1,38 +1,38 @@
 
-import { SoundSource } from "../Game/soundSource";
 import { Game } from "../Game/types";
 import { config } from "../config";
-import { Sound } from "../sound";
 import { gameOver, restart } from "./game";
 
-export function updateBall(game: Game) {
-    if (game.ball.x + game.ball.dx > config.canvasWidth - config.ballRadius ||
-        game.ball.x + game.ball.dx < config.ballRadius) {
-        game.ball.dx = -game.ball.dx;
-        //sound.play(SoundSource.Bounce);
-    }
-    if (game.ball.y + game.ball.dy < config.ballRadius) {
-        game.ball.dy = -game.ball.dy;
-        //sound.play(SoundSource.Bounce);
-    }
-    else if (game.ball.y + game.ball.dy > config.canvasHeight - config.ballRadius) {
-        if (game.ball.x > game.paddle.x &&
-            game.ball.x < game.paddle.x + config.paddleWidth
-        ) {
-            game.ball.dy = -game.ball.dy;
+export function updateBalls(game: Game) {
+    game.balls.forEach(ball => {
+        if (ball.x + ball.dx > config.canvasWidth - config.ballRadius ||
+            ball.x + ball.dx < config.ballRadius) {
+            ball.dx = -ball.dx;
             //sound.play(SoundSource.Bounce);
         }
-        else {
-            game.lives--;
-            if (!game.lives) {
-                gameOver(game)
+        if (ball.y + ball.dy < config.ballRadius) {
+            ball.dy = -ball.dy;
+            //sound.play(SoundSource.Bounce);
+        }
+        else if (ball.y + ball.dy > config.canvasHeight - config.ballRadius) {
+            if (ball.x > game.paddle.x &&
+                ball.x < game.paddle.x + config.paddleWidth
+            ) {
+                ball.dy = -ball.dy;
+                //sound.play(SoundSource.Bounce);
             }
             else {
-                restart(game)
+                game.lives--;
+                if (!game.lives) {
+                    gameOver(game)
+                }
+                else {
+                    restart(game)
+                }
             }
         }
-    }
-    game.ball.x += game.ball.dx;
-    game.ball.y += game.ball.dy;
+        ball.x += ball.dx;
+        ball.y += ball.dy;
+    })
 }
 
