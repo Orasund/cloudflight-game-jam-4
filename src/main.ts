@@ -25,6 +25,9 @@ document.addEventListener("mousemove", control.mouseMoveHandler(canvas), false);
 document.addEventListener("mousedown", () => control.mouseDown = true);
 document.addEventListener("mouseup", () => control.mouseDown = false);
 document.addEventListener("click", () => control.clicked = true);
+canvas.ontouchmove = control.touchMoveHandler(canvas);
+canvas.ontouchstart = () => control.mouseDown = true;
+canvas.ontouchend = () => control.mouseDown = false;
 
 function onKeydown(e: { code: string; }) {
     control.keyDownHandler(e)
