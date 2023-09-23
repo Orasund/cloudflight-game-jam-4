@@ -43,6 +43,7 @@ export function collide_with_bricks(game: Game, sound: Sound, ball: { x: number,
                     ball.dx = dx;
                     ball.dy = dy;
 
+
                     if (is_snake)
                         sound.play(SoundSource.SnakeCollide);
                     else sound.play(SoundSource.Collide);
@@ -70,6 +71,8 @@ export function updateBalls(sound: Sound, game: Game) {
 
         collide_with_bricks(game, sound, ball, false)
         collide_with_snakes(game, ball)
+        ball.x += ball.dx;
+        ball.y += ball.dy;
     })
 }
 

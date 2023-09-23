@@ -13,7 +13,8 @@ export function updateSnakes(game: Game, sound: Sound) {
 
         collide_with_bricks(game, sound, snake, true)
 
-
+        snake.x += snake.dx;
+        snake.y += snake.dy;
 
     })
 
