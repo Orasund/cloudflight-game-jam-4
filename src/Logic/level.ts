@@ -69,6 +69,13 @@ export function applyChar(char: string, pos: number[], game: Game) {
             for (var i = 0; i < config.chickensPerCell; i++) {
                 game.balls.push(newBall([x * config.brickWidth, y * config.brickHeight]))
             };
+            game.bricks[y][x] = {
+                x: x * config.brickWidth,
+                y: y * config.brickHeight,
+                isVisible: false,
+                lastClicKTick: 0,
+                cellType: "chair",
+            };
             return;
         case "🧱":
             game.bricks[y][x] = {
