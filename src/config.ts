@@ -1,6 +1,6 @@
 const canvasHeight = 400;
 const canvasWidth = 700;
-const brickSize = 25;
+const brickSize = 50;
 
 export const config = {
     canvasWidth: canvasWidth,
@@ -8,7 +8,7 @@ export const config = {
 
     paddleHeight: 10,
     paddleWidth: 75,
-    ballRadius: 10,
+    ballRadius: 20,
 
     brickRowCount: Math.floor(canvasWidth / brickSize),
     brickColumnCount: Math.floor(canvasHeight / brickSize),
@@ -20,8 +20,8 @@ export const config = {
     brickOffsetLeft: 0,
 
     chickensPerCell: 5,
-    levelResolution: 2,
-    maxPlacedObsticales: 20,
+    levelResolution: 1,
+    maxPlacedObsticales: 5,
     ballSpeed: 1.5,
     brickRejectForce: 4,
 }
