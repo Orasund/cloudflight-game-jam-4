@@ -1,7 +1,7 @@
 import { Ball, Brick, CellType, Game } from "../Game/types";
 import { config } from "../config";
 import { generateLevel } from "./level";
-import { normalize } from "./util";
+import { normalize, scale, withRandomness } from "./util";
 
 export function newGame(lv: number): Game {
     const game = {
@@ -42,7 +42,7 @@ function newBrick(): Brick[][] {
 }
 export function newBall(pos: number[]): Ball {
     const [x, y] = pos;
-    const [dx, dy] = normalize([2 + Math.random(), -2 + Math.random()]);
+    const [dx, dy] = scale(normalize(withRandomness([0, 0], 1)), config.ballSpeed);
     return {
         dx: dx,
         dy: dy,
