@@ -15,6 +15,9 @@ export function collide_with_bricks(game: Game, ball: { x: number, y: number, dx
                 if (b.cellType == "goal" && !is_snake) {
                     ball.isVisible = false;
                 }
+                if (b.cellType == "lava" && !is_snake) {
+                    game.end = "lost";
+                }
                 if (b.isVisible == true) {
                     const centerX = b.x + config.brickWidth / 2;
                     const centerY = b.y + config.brickHeight / 2;

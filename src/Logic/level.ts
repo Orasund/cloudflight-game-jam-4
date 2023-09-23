@@ -19,12 +19,21 @@ const level1 =
         "🏁🔲🔲🔲🔲🔲🧱🔲🔲🔲🔲🔲🔲🧱",
         "🧱🔲🔲🔲🔲🔲🧱🔲🔲🔲🔲🔲🔲🧱",
         "🧱🔲🐍🔲🔲🔲🔲🔲🔲🔲🔲🔲🔲🧱",
-        "🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱",
+        "🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🌋🧱",
     ]
 
 export function applyChar(char: string, pos: number[], game: Game) {
     const [x, y] = pos;
     switch (char) {
+        case "🌋":
+            game.bricks[y][x] = {
+                x: x * config.brickWidth,
+                y: y * config.brickHeight,
+                isVisible: true,
+                lastClicKTick: 0,
+                cellType: "lava",
+            };
+            return
         case "🐍":
             game.snakes.push(newSnake([x * config.brickWidth, y * config.brickHeight]));
             return;
