@@ -16,6 +16,10 @@ function drawBricks(game: Game, canvas: Canvas) {
             if (game.bricks[c][r].cellType == "lava") {
                 brick_source = ImageSource.Lava;
             }
+            if (game.bricks[c][r].cellType == "chair" &&
+                game.bricks[c][r].isVisible == true) {
+                brick_source = ImageSource.Chair;
+            }
 
             canvas.image({
                 source: brick_source,

@@ -94,7 +94,7 @@ export function applyChar(char: string, pos: number[], game: Game) {
                 y: y * config.brickHeight,
                 isVisible: false,
                 lastClicKTick: 0,
-                cellType: "obstacle",
+                cellType: "chair",
             };
             return;
     }
