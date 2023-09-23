@@ -4,6 +4,7 @@ import { config } from "../config";
 import { addVecs, lengthOf, normalize, scale, withRandomness } from "./util";
 import { Sound } from "../sound";
 import { SoundSource } from "../Game/soundSource";
+import { gameOver } from "./game";
 
 export function collide_with_bricks(game: Game, sound: Sound, ball: { x: number, y: number, dx: number, dy: number, isVisible: boolean }, is_snake: boolean) {
     for (var c = 0; c < config.brickColumnCount; c++) {
@@ -18,7 +19,7 @@ export function collide_with_bricks(game: Game, sound: Sound, ball: { x: number,
                     ball.isVisible = false;
                 }
                 if (b.cellType == "lava" && !is_snake) {
-                    game.end = "lost";
+                    gameOver(game, sound);
                 }
                 if (b.isVisible == true) {
                     const centerX = b.x + config.brickWidth / 2;
@@ -46,19 +47,30 @@ export function collide_with_bricks(game: Game, sound: Sound, ball: { x: number,
 
                     if (is_snake)
                         sound.play(SoundSource.SnakeCollide);
-                    else sound.play(SoundSource.Collide);
+                    else {
+                        const rand = Math.random();
+                        if (rand < 0.7)
+                            sound.play(SoundSource.Collide);
+                        else if (rand < 0.8)
+                            sound.play(SoundSource.Chicken1);
+                        else if (rand < 0.9)
+                            sound.play(SoundSource.Chicken2);
+                        else
+                            sound.play(SoundSource.Chicken3);
+                    }
+
                 }
             }
         }
     }
 }
 
-function collide_with_snakes(game: Game, ball: Ball) {
+function collide_with_snakes(game: Game, ball: Ball, sound: Sound) {
     game.snakes.forEach(snake => {
         if (!snake.isVisible) return;
         const vec = [ball.x - snake.x, ball.y - snake.y]
         const lenOfVec = lengthOf(vec)
-        if (lenOfVec < 2 * config.ballRadius) { game.end = "lost" }
+        if (lenOfVec < 2 * config.ballRadius) { gameOver(game, sound) }
 
     })
 
@@ -70,7 +82,7 @@ export function updateBalls(sound: Sound, game: Game) {
         collide_with_outside_scene(ball, false)
 
         collide_with_bricks(game, sound, ball, false)
-        collide_with_snakes(game, ball)
+        collide_with_snakes(game, ball, sound)
         ball.x += ball.dx;
         ball.y += ball.dy;
     })

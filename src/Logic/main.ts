@@ -2,7 +2,7 @@ import { Game } from '../Game/types';
 import { config } from '../config';
 import { Control } from '../control';
 import { updateBalls } from './ball';
-import { isGameWon, newGame } from './game';
+import { gameWon, isGameWon, newGame } from './game';
 import { movePaddle } from './paddle';
 import { updateSnakes } from './snakes';
 import { inArea } from './util';
@@ -55,10 +55,8 @@ export function tick(control: Control, sound: Sound, game: Game) {
     if (game.end!!) {
 
         if (game.end === "lost" && control.mouseDown) {
-            console.log("lost")
             game = newGame(game.level)
         } else if (game.end === "won" && control.mouseDown) {
-            console.log("won")
             game = newGame(game.level + 1)
         }
         return game
@@ -70,6 +68,6 @@ export function tick(control: Control, sound: Sound, game: Game) {
     updateSnakes(game, sound)
     clickedBricks(game, control)
 
-    if ((isGameWon(game))) game.end = "won";
+    if (isGameWon(game)) gameWon(game, sound);
     return game;
 }

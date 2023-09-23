@@ -1,5 +1,7 @@
+import { SoundSource } from "../Game/soundSource";
 import { Ball, Brick, CellType, Game, Snake } from "../Game/types";
 import { config } from "../config";
+import { Sound } from "../sound";
 import { generateLevel } from "./level";
 import { normalize, scale, withRandomness } from "./util";
 
@@ -83,10 +85,13 @@ export function restart(game: Game) {
     game.paddle.x = (config.canvasWidth - config.paddleWidth) / 2;
 }
 
-export function gameOver(game: Game) {
+export function gameOver(game: Game, sound: Sound) {
     game.end = "lost";
+    sound.play(SoundSource.Die);
 }
-export function gameWon(game: Game) {
-    game.end = "won"
+export function gameWon(game: Game, sound: Sound) {
+    console.log("won");
+    game.end = "won";
+    sound.play(SoundSource.Win);
 }
 
