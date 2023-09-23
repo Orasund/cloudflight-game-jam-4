@@ -67,7 +67,7 @@ export function updateBalls(sound: Sound, game: Game) {
     game.balls.forEach(ball => {
         if (!ball.isVisible) return;
 
-        collide_with_outside_scene(ball)
+        collide_with_outside_scene(ball, false)
 
         collide_with_bricks(game, sound, ball, false)
         collide_with_snakes(game, ball)
@@ -76,14 +76,20 @@ export function updateBalls(sound: Sound, game: Game) {
     })
 }
 
-export function collide_with_outside_scene(ball: { x: number, y: number, dx: number, dy: number, isVisible: boolean }) {
+export function collide_with_outside_scene(ball: { x: number, y: number, dx: number, dy: number, isVisible: boolean }, is_snake: boolean) {
     if (ball.x + ball.dx > config.canvasWidth - config.ballRadius ||
         ball.x + ball.dx < config.ballRadius) {
-        ball.isVisible = false;
+        if (is_snake)
+            ball.dx = -ball.dx;
+        else
+            ball.isVisible = false;
     }
     if (ball.y + ball.dy > config.canvasHeight - config.ballRadius ||
         ball.y + ball.dy < config.ballRadius) {
-        ball.isVisible = false;
+        if (is_snake)
+            ball.dy = -ball.dy;
+        else
+            ball.isVisible = false;
     }
 }
 export function forceAt(pos: number[], game: Game): number[] {

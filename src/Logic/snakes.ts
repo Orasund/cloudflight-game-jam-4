@@ -9,7 +9,7 @@ export function updateSnakes(game: Game, sound: Sound) {
     game.snakes.forEach(snake => {
         if (!snake.isVisible) return;
 
-        collide_with_outside_scene(snake)
+        collide_with_outside_scene(snake, true)
 
         collide_with_bricks(game, sound, snake, true)
 
