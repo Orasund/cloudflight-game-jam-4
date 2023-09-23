@@ -5,11 +5,13 @@ import { newBall, newSnake } from "./game";
 function initiateLevel(lv: number): string[] | null {
     switch (lv) {
         case 1:
-            return level0
+            return level3
         case 2:
             return level1
         case 3:
             return level2
+        case 4:
+            return level3
     }
     return null
 }
@@ -50,6 +52,18 @@ const level1 =
         "🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱",
     ]
 
+const level3 =
+    [
+        "🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱",
+        "🧱🔲🔲🔲🔲🔲🔲🔲🐤🔲🔲🔲🔲🧱",
+        "🧱🧱🧱🧱🔲🔲🧱🔲🔲🔲🔲🔲🔲🧱",
+        "🏁🔲🔲🔲🔲🔲🧱🔲🔲🔲🔲🔲🧱🧱",
+        "🏁🔲🔲🔲🔲🔲🧱🔲🔲🔲🔲🔲🔲🧱",
+        "🧱🔲🔲🔲🔲🔲🔲🔲🔲🔲🔲🧱🔲🧱",
+        "🧱🔲🐍🔲🔲🔲🔲🔲🔲🔲🧱🔲🐍🧱",
+        "🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱",
+    ]
+
 export function applyChar(char: string, pos: number[], game: Game) {
     const [x, y] = pos;
     switch (char) {
@@ -64,6 +78,13 @@ export function applyChar(char: string, pos: number[], game: Game) {
             return
         case "🐍":
             game.snakes.push(newSnake([x * config.brickWidth, y * config.brickHeight]));
+            game.bricks[y][x] = {
+                x: x * config.brickWidth,
+                y: y * config.brickHeight,
+                isVisible: false,
+                lastClicKTick: 0,
+                cellType: "chair",
+            };
             return;
         case "🐤":
             for (var i = 0; i < config.chickensPerCell; i++) {
