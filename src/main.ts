@@ -15,7 +15,7 @@ canvas.height = config.canvasHeight;
 container.append(canvas);
 
 //Initiate State
-let game: Game = newGame();
+let game: Game = newGame(1);
 let control: Control = new Control();
 let sound: Sound = new Sound();
 

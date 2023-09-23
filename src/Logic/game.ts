@@ -1,8 +1,23 @@
 import { Ball, Brick, CellType, Game } from "../Game/types";
 import { config } from "../config";
+import { generateLevel } from "./level";
 import { normalize } from "./util";
 
-export function newGame(): Game {
+export function newGame(lv: number): Game {
+    const game = {
+        paddle: {
+            x: (config.canvasWidth - config.paddleWidth) / 2
+        },
+        bricks: newBrick(),
+        score: 0,
+        lives: 3,
+        balls: [],
+        end: undefined,
+        currentTick: 0
+    }
+    return generateLevel(lv, game);
+}
+function newBrick(): Brick[][] {
     let bricks: Brick[][] = []
     for (var c = 0; c < config.brickColumnCount; c++) {
         bricks[c] = [];
@@ -22,26 +37,16 @@ export function newGame(): Game {
             };
         }
     }
-    let balls: Ball[] = [newBall(), newBall(), newBall(), newBall(), newBall(), newBall(), newBall(), newBall(), newBall()]
-    return {
-        paddle: {
-            x: (config.canvasWidth - config.paddleWidth) / 2
-        },
-        bricks: bricks,
-        score: 0,
-        lives: 3,
-        balls: balls,
-        end: undefined,
-        currentTick: 0
-    }
+    return bricks;
 }
-function newBall(): Ball {
+export function newBall(pos: number[]): Ball {
+    const [x, y] = pos;
     const [dx, dy] = normalize([2 + Math.random(), -2 + Math.random()]);
     return {
         dx: dx,
         dy: dy,
-        x: config.canvasWidth / 2,
-        y: config.canvasHeight / 2,
+        x: x,
+        y: y,
     }
 }
 

@@ -19,4 +19,5 @@ export const config = {
     brickOffsetTop: 0,
     brickOffsetLeft: 0,
 
+    levelResolution: 2
 }
