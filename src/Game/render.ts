@@ -45,10 +45,11 @@ export function toCanvas(game: Game, ctx: CanvasRenderingContext2D) {
     drawBricks(game, canvas);
     game.balls.forEach(ball => {
         if (!ball.isVisible) return;
-        canvas.circle({
+        canvas.image({
+            source: ImageSource.RoundChicken,
             center: [ball.x, ball.y],
-            radius: config.ballRadius,
-            color: "#0095DD"
+            width: config.ballRadius * 2,
+            height: config.ballRadius * 2,
         })
     })
 }
