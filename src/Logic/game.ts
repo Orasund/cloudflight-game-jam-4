@@ -1,7 +1,7 @@
 import { Ball, Brick, CellType, Game, Snake } from "../Game/types";
 import { config } from "../config";
 import { generateLevel } from "./level";
-import { addVecs, lengthOf, normalize, scale, withRandomness } from "./util";
+import { normalize, scale, withRandomness } from "./util";
 
 export function newGame(lv: number): Game {
     const game = {

@@ -1,4 +1,5 @@
 // vite.config.js
 export default {
-    base: ""
+    base: "",
+    build: { outDir: "docs" }
 }

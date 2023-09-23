@@ -63,8 +63,15 @@ export class Control {
             if (relativeX > 0 && relativeX < canvas.width && relativeY > 0 && relativeY < canvas.height) {
                 this.mousePos = [relativeX, relativeY]
             }
-            if (relativeX > 0 && relativeX < canvas.width) {
+        }
+    }
 
+    touchMoveHandler(canvas: HTMLCanvasElement) {
+        return (e: TouchEvent) => {
+            var relativeX = e.touches[0].clientX - canvas.offsetLeft;
+            var relativeY = e.touches[0].clientY - canvas.offsetTop;
+            if (relativeX > 0 && relativeX < canvas.width && relativeY > 0 && relativeY < canvas.height) {
+                this.mousePos = [relativeX, relativeY]
             }
         }
     }
