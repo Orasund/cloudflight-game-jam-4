@@ -1,10 +1,10 @@
 export function normalize(vec: number[]) {
     const [x, y] = vec;
-    const len = length(vec);
+    const len = lengthOf(vec);
     return [x / len, y / len];
 }
 
-export function length(vec: number[]): number {
+export function lengthOf(vec: number[]): number {
     const [x, y] = vec
 
     return Math.sqrt(x * x + y * y)
