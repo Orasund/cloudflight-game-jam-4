@@ -13,6 +13,9 @@ function drawBricks(game: Game, canvas: Canvas) {
             if (game.bricks[c][r].cellType == "goal") {
                 brick_source = ImageSource.Brick2;
             }
+            if (game.bricks[c][r].cellType == "lava") {
+                brick_source = ImageSource.Lava;
+            }
 
             canvas.image({
                 source: brick_source,
