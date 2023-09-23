@@ -1,6 +1,7 @@
 
 import { Game } from "../Game/types";
 import { config } from "../config";
+import { normalize } from "./util";
 
 export function updateBalls(game: Game) {
     game.balls.forEach(ball => {
@@ -34,9 +35,10 @@ export function updateBalls(game: Game) {
                         const centerX = b.x + config.brickWidth / 2;
                         const centerY = b.y + config.brickHeight / 2;
 
+                        const [dx, dy] = normalize([ball.x - centerX, ball.y - centerY])
 
-                        ball.dx = ball.x - centerX;
-                        ball.dy = ball.y - centerY;
+                        ball.dx = dx;
+                        ball.dy = dy;
 
                         //sound.play(SoundSource.Bounce);
                     }

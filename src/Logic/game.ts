@@ -1,5 +1,6 @@
 import { Ball, Brick, CellType, Game } from "../Game/types";
 import { config } from "../config";
+import { normalize } from "./util";
 
 export function newGame(): Game {
     let bricks: Brick[][] = []
@@ -21,12 +22,7 @@ export function newGame(): Game {
             };
         }
     }
-    let balls: Ball[] = Array(3).fill({
-        dx: 2 + Math.random(),
-        dy: -2 + Math.random(),
-        x: config.canvasWidth / 2,
-        y: config.canvasHeight / 2,
-    })
+    let balls: Ball[] = [newBall(), newBall(), newBall(), newBall(), newBall(), newBall(), newBall(), newBall(), newBall()]
     return {
         paddle: {
             x: (config.canvasWidth - config.paddleWidth) / 2
@@ -37,6 +33,15 @@ export function newGame(): Game {
         balls: balls,
         end: undefined,
         currentTick: 0
+    }
+}
+function newBall(): Ball {
+    const [dx, dy] = normalize([2 + Math.random(), -2 + Math.random()]);
+    return {
+        dx: dx,
+        dy: dy,
+        x: config.canvasWidth / 2,
+        y: config.canvasHeight / 2,
     }
 }
 
