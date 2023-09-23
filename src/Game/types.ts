@@ -5,7 +5,7 @@ export interface Brick {
     lastClicKTick: number,
     cellType: CellType;
 }
-export type CellType = "obstacle" | "goal" | "lava"
+export type CellType = "obstacle" | "goal" | "lava" | "chair"
 
 export interface Ball {
     dx: number,

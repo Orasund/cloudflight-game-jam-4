@@ -5,5 +5,6 @@ export enum ImageSource {
     Brick3 = "brick3",
     BrickInvisible = "invisble_brick",
     RoundChicken = "roundChicken",
-    Lava = "lava"
+    Lava = "lava",
+    Chair = "chair"
 }
