@@ -1,7 +1,7 @@
 
 import { Ball, Game } from "../Game/types";
 import { config } from "../config";
-import { normalize, scale, withRandomness } from "./util";
+import { lengthOf, normalize, scale, withRandomness } from "./util";
 
 
 function collide_with_bricks(game: Game, ball: Ball) {
@@ -35,11 +35,9 @@ function collide_with_bricks(game: Game, ball: Ball) {
 function collide_with_snakes(game: Game, ball) {
     game.snakes.forEach(snake => {
         if (!snake.isVisible) return;
-        if (ball.x - snake.x &&
-            ball.x < snake.x + config.brickWidth + config.ballRadius &&
-            ball.y > snake.y - config.ballRadius &&
-            ball.y < snake.y + config.brickHeight + config.ballRadius
-        ) { game.end = "lost" }
+        const vec = [ball.x - snake.x, ball.y - snake.y]
+        const lenOfVec = lengthOf(vec)
+        if (lenOfVec < 2 * config.ballRadius) { game.end = "lost" }
 
     })
 
@@ -51,6 +49,7 @@ export function updateBalls(game: Game) {
         collide_with_outside_scene(ball)
 
         collide_with_bricks(game, ball)
+        collide_with_snakes(game, ball)
 
 
 
