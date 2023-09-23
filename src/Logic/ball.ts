@@ -1,7 +1,7 @@
 
 import { Game } from "../Game/types";
 import { config } from "../config";
-import { normalize } from "./util";
+import { normalize, scale, withRandomness } from "./util";
 
 export function updateBalls(game: Game) {
     game.balls.forEach(ball => {
@@ -36,7 +36,7 @@ export function updateBalls(game: Game) {
                         const centerX = b.x + config.brickWidth / 2;
                         const centerY = b.y + config.brickHeight / 2;
 
-                        const [dx, dy] = normalize([ball.x - centerX, ball.y - centerY])
+                        const [dx, dy] = withRandomness(scale(normalize([ball.x - centerX, ball.y - centerY]), config.ballSpeed), 0.1)
 
                         ball.dx = dx;
                         ball.dy = dy;
