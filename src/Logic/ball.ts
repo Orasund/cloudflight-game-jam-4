@@ -4,7 +4,7 @@ import { config } from "../config";
 import { lengthOf, normalize, scale, withRandomness } from "./util";
 
 
-function collide_with_bricks(game: Game, ball: Ball) {
+export function collide_with_bricks(game: Game, ball: { x: number, y: number, dx: number, dy: number, isVisible: boolean }, is_snake: boolean) {
     for (var c = 0; c < config.brickColumnCount; c++) {
         for (var r = 0; r < config.brickRowCount; r++) {
             var b = game.bricks[c][r];
@@ -13,7 +13,7 @@ function collide_with_bricks(game: Game, ball: Ball) {
                 ball.y > b.y - config.ballRadius &&
                 ball.y < b.y + config.brickHeight + config.ballRadius
             ) {
-                if (b.cellType == "goal") {
+                if (b.cellType == "goal" && !is_snake) {
                     ball.isVisible = false;
                 }
                 if (b.isVisible == true) {
@@ -48,7 +48,7 @@ export function updateBalls(game: Game) {
 
         collide_with_outside_scene(ball)
 
-        collide_with_bricks(game, ball)
+        collide_with_bricks(game, ball, false)
         collide_with_snakes(game, ball)
 
 
@@ -58,7 +58,7 @@ export function updateBalls(game: Game) {
 
 }
 
-function collide_with_outside_scene(ball: Ball) {
+export function collide_with_outside_scene(ball: { x: number, y: number, dx: number, dy: number }) {
     if (ball.x + ball.dx > config.canvasWidth - config.ballRadius ||
         ball.x + ball.dx < config.ballRadius) {
         ball.dx = -ball.dx;

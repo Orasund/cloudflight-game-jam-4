@@ -5,6 +5,7 @@ import { Sound } from '../sound';
 import { updateBalls } from './ball';
 import { isGameWon } from './game';
 import { movePaddle } from './paddle';
+import { updateSnakes } from './snakes';
 
 
 
@@ -48,6 +49,7 @@ export function tick(control: Control, sound: Sound, game: Game) {
     game.currentTick++;
     movePaddle(control, game);
     updateBalls(game)
+    updateSnakes(game)
     clickedBricks(game, control)
 
     if ((isGameWon(game))) game.end = "won";
