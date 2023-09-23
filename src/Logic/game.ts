@@ -1,7 +1,7 @@
 import { Ball, Brick, CellType, Game, Snake } from "../Game/types";
 import { config } from "../config";
 import { generateLevel } from "./level";
-import { normalize, scale, withRandomness } from "./util";
+import { addVecs, lengthOf, normalize, scale, withRandomness } from "./util";
 
 export function newGame(lv: number): Game {
     const game = {
@@ -88,3 +88,4 @@ export function gameOver(game: Game) {
 export function gameWon(game: Game) {
     game.end = "won"
 }
+
