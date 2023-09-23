@@ -5,6 +5,7 @@ import { updateBalls } from './ball';
 import { isGameWon, newGame } from './game';
 import { movePaddle } from './paddle';
 import { updateSnakes } from './snakes';
+import { inArea } from './util';
 
 
 
@@ -15,18 +16,18 @@ function clickedBricks(game: Game, controls: Control) {
         for (var r = 0; r < config.brickRowCount; r++) {
             if (game.bricks[c][r].isVisible) continue;
 
+            const posX = game.bricks[c][r].x + config.brickWidth / 2
+            const posY = game.bricks[c][r].y + config.brickHeight / 2
+
             //let lastClickTickDiff = game.currentTick - game.bricks[c][r].lastClicKTick
             if (
                 controls.mouseInArea({
-                    center:
-                        [game.bricks[c][r].x + config.brickWidth / 2,
-                        game.bricks[c][r].y + config.brickHeight / 2
-                        ],
+                    center: [posX, posY],
                     width: config.brickWidth,
                     height: config.brickHeight,
-                }) &&
+                }) && noCreatureInArea([posX, posY], config.brickWidth, config.brickHeight, game)
+                && controls.mouseDown
 
-                controls.mouseDown
                 //lastClickTickDiff > 3 * 60
             ) {
                 game.bricks[c][r].isVisible = true;
@@ -40,6 +41,14 @@ function clickedBricks(game: Game, controls: Control) {
 
         }
     }
+}
+
+export function noCreatureInArea(pos: number[], width: number, height: number, game: Game) {
+    return (game.balls.filter(ball =>
+        inArea([ball.x, ball.y], { pos, width: width + config.ballRadius * 2, height: height + config.ballRadius * 2 })
+    ).length == 0) && (game.snakes.filter(ball =>
+        inArea([ball.x, ball.y], { pos, width: width + config.ballRadius * 2, height: height + config.ballRadius * 2 })
+    ).length == 0)
 }
 export function tick(control: Control, game: Game) {
     if (game.end!!) {

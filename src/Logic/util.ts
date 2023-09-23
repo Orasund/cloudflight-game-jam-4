@@ -24,3 +24,12 @@ export function addVecs(vec1: number[], vec2: number[]): number[] {
     const [x2, y2] = vec2;
     return [x1 + x2, y1 + y2];
 }
+
+export function inArea(vec: number[], area: { pos: number[], width: number, height: number }) {
+    const [x, y] = vec;
+    const [areaX, areaY] = area.pos;
+    return x > areaX - area.width / 2 &&
+        x < areaX + area.width / 2 &&
+        y > areaY - area.height / 2 &&
+        y < areaY + area.height / 2
+}
