@@ -1,4 +1,4 @@
-import { Ball, Brick, CellType, Game } from "../Game/types";
+import { Ball, Brick, CellType, Game, Snake } from "../Game/types";
 import { config } from "../config";
 import { generateLevel } from "./level";
 import { normalize } from "./util";
@@ -12,6 +12,7 @@ export function newGame(lv: number): Game {
         score: 0,
         lives: 3,
         balls: [],
+        snakes: [],
         end: undefined,
         currentTick: 0,
         placed: []
@@ -51,6 +52,20 @@ export function newBall(pos: number[]): Ball {
         isVisible: true,
     }
 }
+
+
+export function newSnake(pos: number[]): Snake {
+    const [x, y] = pos;
+    const [dx, dy] = normalize([2 + Math.random(), -2 + Math.random()]);
+    return {
+        dx: dx,
+        dy: dy,
+        x: x,
+        y: y,
+        isVisible: true,
+    }
+}
+
 
 export function isGameWon(game: Game): boolean {
     return game.balls.filter(ball => ball.isVisible).length == 0

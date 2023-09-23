@@ -6,17 +6,29 @@ export interface Brick {
     cellType: CellType;
 }
 export type CellType = "obstacle" | "goal"
+
 export interface Ball {
     dx: number,
     dy: number,
     x: number,
     y: number,
-    isVisible: boolean
+    isVisible: boolean,
 }
+
+export interface Snake {
+    dx: number,
+    dy: number,
+    x: number,
+    y: number,
+    isVisible: boolean,
+}
+
+
 export interface Paddle {
     x: number
 }
 export interface Game {
+    snakes: Snake[],
     paddle: Paddle,
     bricks: Brick[][],
     score: number,

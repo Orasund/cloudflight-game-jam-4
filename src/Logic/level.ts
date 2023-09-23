@@ -1,6 +1,6 @@
 import { Game } from "../Game/types"
 import { config } from "../config";
-import { newBall } from "./game";
+import { newBall, newSnake } from "./game";
 
 function initiateLevel(lv: number) {
     switch (lv) {
@@ -18,13 +18,16 @@ const level1 =
         "🏁🔲🔲🔲🔲🔲🧱🔲🔲🔲🐤🔲🔲🧱",
         "🏁🔲🔲🔲🔲🔲🧱🔲🔲🔲🔲🔲🔲🧱",
         "🧱🔲🔲🔲🔲🔲🧱🔲🔲🔲🔲🔲🔲🧱",
-        "🧱🔲🔲🔲🔲🔲🔲🔲🔲🔲🔲🔲🔲🧱",
+        "🧱🔲🐍🔲🔲🔲🔲🔲🔲🔲🔲🔲🔲🧱",
         "🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱",
     ]
 
 export function applyChar(char: string, pos: number[], game: Game) {
     const [x, y] = pos;
     switch (char) {
+        case "🐍":
+            game.snakes.push(newSnake([x * config.brickWidth, y * config.brickHeight]));
+            return;
         case "🐤":
             game.balls.push(newBall([x * config.brickWidth, y * config.brickHeight]));
             return;
@@ -73,3 +76,4 @@ export function generateLevel(lv: number, game: Game) {
 
     return game;
 }
+

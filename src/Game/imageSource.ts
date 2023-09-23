@@ -1,5 +1,5 @@
 export enum ImageSource {
-    Ball = "ball",
+    Snake = "snake",
     Brick1 = "brick1",
     Brick2 = "brick2",
     Brick3 = "brick3",

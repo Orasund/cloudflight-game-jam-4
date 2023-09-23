@@ -43,6 +43,15 @@ export function toCanvas(game: Game, ctx: CanvasRenderingContext2D) {
     }
 
     drawBricks(game, canvas);
+    game.snakes.forEach(snake => {
+        if (!snake.isVisible) return;
+        canvas.image({
+            source: ImageSource.Snake,
+            center: [snake.x, snake.y],
+            width: config.ballRadius * 2,
+            height: config.ballRadius * 2,
+        })
+    })
     game.balls.forEach(ball => {
         if (!ball.isVisible) return;
         canvas.image({
