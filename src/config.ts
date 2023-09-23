@@ -1,5 +1,5 @@
-const canvasHeight = 400;
-const canvasWidth = 700;
+const canvasHeight = 700;
+const canvasWidth = 400;
 const brickSize = 50;
 
 export const config = {
