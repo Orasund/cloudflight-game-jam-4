@@ -5,7 +5,11 @@ import { newBall, newSnake } from "./game";
 function initiateLevel(lv: number): string[] | null {
     switch (lv) {
         case 1:
+            return level0
+        case 2:
             return level1
+        case 3:
+            return level2
     }
     return null
 }
