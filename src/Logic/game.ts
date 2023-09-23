@@ -13,7 +13,8 @@ export function newGame(lv: number): Game {
         lives: 3,
         balls: [],
         end: undefined,
-        currentTick: 0
+        currentTick: 0,
+        placed: []
     }
     return generateLevel(lv, game);
 }

@@ -24,4 +24,5 @@ export interface Game {
     balls: Ball[],
     end: "won" | "lost" | undefined;
     currentTick: number;
+    placed: { x: number, y: number }[]
 }
