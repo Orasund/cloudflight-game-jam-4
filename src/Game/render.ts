@@ -40,6 +40,9 @@ export function toCanvas(game: Game, ctx: CanvasRenderingContext2D) {
         case "lost":
             canvas.title("Game Lost", [config.canvasWidth / 2 - 150, config.canvasHeight / 2])
             return;
+        case "finished":
+            canvas.title("Thanks for playing", [config.canvasWidth / 2 - 150, config.canvasHeight / 2])
+            return;
     }
 
     drawBricks(game, canvas);

@@ -34,7 +34,8 @@ export interface Game {
     score: number,
     lives: number,
     balls: Ball[],
-    end: "won" | "lost" | undefined;
-    currentTick: number;
-    placed: { x: number, y: number }[]
+    end: "won" | "lost" | "finished" | undefined,
+    currentTick: number,
+    placed: { x: number, y: number }[],
+    level: number
 }

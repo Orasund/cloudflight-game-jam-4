@@ -15,7 +15,8 @@ export function newGame(lv: number): Game {
         snakes: [],
         end: undefined,
         currentTick: 0,
-        placed: []
+        placed: [],
+        level: lv
     }
     return generateLevel(lv, game);
 }
