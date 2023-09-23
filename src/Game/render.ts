@@ -44,23 +44,11 @@ export function toCanvas(game: Game, ctx: CanvasRenderingContext2D) {
 
     drawBricks(game, canvas);
     game.balls.forEach(ball => {
+        if (!ball.isVisible) return;
         canvas.circle({
             center: [ball.x, ball.y],
             radius: config.ballRadius,
             color: "#0095DD"
         })
     })
-    canvas
-        .rect({
-            center: [
-                game.paddle.x + config.paddleWidth / 2,
-                config.canvasHeight - config.paddleHeight / 2
-            ],
-            width: config.paddleWidth,
-            height: config.paddleHeight,
-            color: "#0095DD"
-        })
-    canvas.text("Score: " + game.score, [8, 20]);
-    canvas.text("Lives: " + game.lives, [config.canvasWidth - 65, 20]);
-
 }

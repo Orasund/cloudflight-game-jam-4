@@ -5,6 +5,8 @@ import { normalize } from "./util";
 
 export function updateBalls(game: Game) {
     game.balls.forEach(ball => {
+        if (!ball.isVisible) return;
+
         if (ball.x + ball.dx > config.canvasWidth - config.ballRadius ||
             ball.x + ball.dx < config.ballRadius) {
             ball.dx = -ball.dx;
@@ -28,8 +30,7 @@ export function updateBalls(game: Game) {
                     ball.y < b.y + config.brickHeight + config.ballRadius
                 ) {
                     if (b.cellType == "goal") {
-                        game.end = "won"
-
+                        ball.isVisible = false;
                     }
                     if (b.isVisible == true) {
                         const centerX = b.x + config.brickWidth / 2;

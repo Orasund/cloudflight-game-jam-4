@@ -10,7 +10,8 @@ export interface Ball {
     dx: number,
     dy: number,
     x: number,
-    y: number
+    y: number,
+    isVisible: boolean
 }
 export interface Paddle {
     x: number

@@ -39,7 +39,7 @@ function onKeyup(e: { code: string; }) {
 //Start gameloop
 const ctx = canvas.getContext("2d")!
 function nextFrame() {
-    tick({ control, game, sound });
+    tick(control, sound, game);
     draw.toCanvas(game, ctx);
     control.clicked = false;
     requestAnimationFrame(nextFrame);

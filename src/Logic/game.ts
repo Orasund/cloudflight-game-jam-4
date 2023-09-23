@@ -47,7 +47,12 @@ export function newBall(pos: number[]): Ball {
         dy: dy,
         x: x,
         y: y,
+        isVisible: true,
     }
+}
+
+export function isGameWon(game: Game): boolean {
+    return game.balls.filter(ball => ball.isVisible).length == 0
 }
 
 export function restart(game: Game) {

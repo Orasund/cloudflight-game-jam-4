@@ -3,6 +3,7 @@ import { config } from '../config';
 import { Control } from '../control';
 import { Sound } from '../sound';
 import { updateBalls } from './ball';
+import { isGameWon } from './game';
 import { movePaddle } from './paddle';
 
 
@@ -28,13 +29,14 @@ function clickedBricks(game: Game, controls: Control) {
         }
     }
 }
-export function tick(args: { control: Control, sound: Sound, game: Game }) {
-    if (args.game.end!!)
+export function tick(control: Control, sound: Sound, game: Game) {
+    if (game.end!!)
         return;
 
-    args.game.currentTick++;
-    movePaddle(args.control, args.game);
-    updateBalls(args.game)
-    clickedBricks(args.game, args.control)
+    game.currentTick++;
+    movePaddle(control, game);
+    updateBalls(game)
+    clickedBricks(game, control)
 
+    if ((isGameWon(game))) game.end = "won";
 }
