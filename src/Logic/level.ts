@@ -26,11 +26,11 @@ export function applyChar(char: string, pos: number[], game: Game) {
     const [x, y] = pos;
     switch (char) {
         case "🐤":
-            game.balls.push(newBall([x * config.brickWidth, y * config.brickHeight]));
+            for (var i = 0; i < config.chickensPerCell; i++) {
+                game.balls.push(newBall([x * config.brickWidth, y * config.brickHeight]))
+            };
             return;
         case "🧱":
-            console.log(game.bricks)
-            console.log([x, y])
             game.bricks[y][x] = {
                 x: x * config.brickWidth,
                 y: y * config.brickHeight,
