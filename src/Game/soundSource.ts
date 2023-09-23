@@ -1,3 +1,4 @@
 export enum SoundSource {
-    Bounce = "bounce",
+    Collide = "collide",
+    SnakeCollide = "snakeBounce"
 }

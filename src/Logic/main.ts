@@ -6,6 +6,7 @@ import { isGameWon, newGame } from './game';
 import { movePaddle } from './paddle';
 import { updateSnakes } from './snakes';
 import { inArea } from './util';
+import { Sound } from '../sound';
 
 
 
@@ -50,7 +51,7 @@ export function noCreatureInArea(pos: number[], width: number, height: number, g
         inArea([ball.x, ball.y], { pos, width: width + config.ballRadius * 2, height: height + config.ballRadius * 2 })
     ).length == 0)
 }
-export function tick(control: Control, game: Game) {
+export function tick(control: Control, sound: Sound, game: Game) {
     if (game.end!!) {
 
         if (game.end === "lost" && control.mouseDown) {
@@ -65,8 +66,8 @@ export function tick(control: Control, game: Game) {
 
     game.currentTick++;
     movePaddle(control, game);
-    updateBalls(game)
-    updateSnakes(game)
+    updateBalls(sound, game)
+    updateSnakes(game, sound)
     clickedBricks(game, control)
 
     if ((isGameWon(game))) game.end = "won";

@@ -2,8 +2,10 @@
 import { Ball, Game } from "../Game/types";
 import { config } from "../config";
 import { addVecs, lengthOf, normalize, scale, withRandomness } from "./util";
+import { Sound } from "../sound";
+import { SoundSource } from "../Game/soundSource";
 
-export function collide_with_bricks(game: Game, ball: { x: number, y: number, dx: number, dy: number, isVisible: boolean }, is_snake: boolean) {
+export function collide_with_bricks(game: Game, sound: Sound, ball: { x: number, y: number, dx: number, dy: number, isVisible: boolean }, is_snake: boolean) {
     for (var c = 0; c < config.brickColumnCount; c++) {
         for (var r = 0; r < config.brickRowCount; r++) {
             var b = game.bricks[c][r];
@@ -41,7 +43,9 @@ export function collide_with_bricks(game: Game, ball: { x: number, y: number, dx
                     ball.dx = dx;
                     ball.dy = dy;
 
-                    //sound.play(SoundSource.Bounce);
+                    if (is_snake)
+                        sound.play(SoundSource.SnakeCollide);
+                    else sound.play(SoundSource.Collide);
                 }
             }
         }
@@ -58,33 +62,26 @@ function collide_with_snakes(game: Game, ball: Ball) {
     })
 
 }
-export function updateBalls(game: Game) {
+export function updateBalls(sound: Sound, game: Game) {
     game.balls.forEach(ball => {
         if (!ball.isVisible) return;
 
         collide_with_outside_scene(ball)
 
-        collide_with_bricks(game, ball, false)
+        collide_with_bricks(game, sound, ball, false)
         collide_with_snakes(game, ball)
-
-
-
     })
 }
 
-export function collide_with_outside_scene(ball: { x: number, y: number, dx: number, dy: number }) {
+export function collide_with_outside_scene(ball: { x: number, y: number, dx: number, dy: number, isVisible: boolean }) {
     if (ball.x + ball.dx > config.canvasWidth - config.ballRadius ||
         ball.x + ball.dx < config.ballRadius) {
-        ball.dx = -ball.dx;
-        //sound.play(SoundSource.Bounce);
+        ball.isVisible = false;
     }
     if (ball.y + ball.dy > config.canvasHeight - config.ballRadius ||
         ball.y + ball.dy < config.ballRadius) {
-        ball.dy = -ball.dy;
-        //sound.play(SoundSource.Bounce);
+        ball.isVisible = false;
     }
-    ball.x += ball.dx;
-    ball.y += ball.dy;
 }
 export function forceAt(pos: number[], game: Game): number[] {
     const [x, y] = pos;

@@ -5,6 +5,7 @@ import { Game } from './Game/types';
 import { Control } from './control';
 import { newGame } from './Logic/game';
 import { tick } from './Logic/main';
+import { Sound } from './sound';
 
 //Create Canvas
 const container = document.querySelector('#app') as HTMLDivElement;
@@ -16,7 +17,7 @@ container.append(canvas);
 //Initiate State
 let game: Game = newGame(1);
 let control: Control = new Control();
-//let sound: Sound = new Sound();
+let sound: Sound = new Sound();
 
 //Add Event Listeners
 document.addEventListener("keydown", onKeydown, false);
@@ -41,7 +42,7 @@ function onKeyup(e: { code: string; }) {
 //Start gameloop
 const ctx = canvas.getContext("2d")!
 function nextFrame() {
-    game = tick(control, game);
+    game = tick(control, sound, game);
     draw.toCanvas(game, ctx);
     control.clicked = false;
     requestAnimationFrame(nextFrame);
