@@ -27,7 +27,7 @@ function clickedBricks(game: Game, controls: Control) {
                     width: config.brickWidth,
                     height: config.brickHeight,
                 }) && noCreatureInArea([posX, posY], config.brickWidth, config.brickHeight, game)
-                && controls.mouseDown
+                && controls.mouseDown && game.currentTick > 30
 
                 //lastClickTickDiff > 3 * 60
             ) {
