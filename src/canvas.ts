@@ -41,23 +41,27 @@ export class Canvas {
 
     }
     title(value: string, pos: number[]) {
-        return this.textWithArgs({ pos, value, size: 64 })
+        return this.textWithArgs({ pos, value, size: 64, center: true })
     }
     textWithArgs(args: {
         value: string,
         pos: number[],
         color?: string,
         size?: number,
-        font?: string
+        font?: string,
+        center?: boolean
     }) {
         const [x, y] = args.pos;
-        const font = args.font ? args.font : "Arial"
-        const size = args.size ? args.size : 16
-        const color = args.color ? args.color : "#0095DD"
+        const font = args.font ?? "Arial"
+        const size = args.size ?? 16
+        const color = args.color ?? "#000000"
+        const centering = args.center ?? false
 
         this.ctx.font = size + "px " + font;
         this.ctx.fillStyle = color;
+        if (centering) this.ctx.textAlign = "center"
         this.ctx.fillText(args.value, x, y);
+        if (centering) this.ctx.textAlign = "left"
         return this;
     }
 }

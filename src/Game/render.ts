@@ -40,19 +40,24 @@ export function toCanvas(game: Game, ctx: CanvasRenderingContext2D) {
 
     const canvas = new Canvas(ctx);
 
+
     switch (game.end) {
         case "won":
-            canvas.title("Game Won", [config.canvasWidth / 2 - 150, config.canvasHeight / 2])
+            canvas.title("Game Won", [config.canvasWidth / 2, config.canvasHeight / 2])
+            canvas.textWithArgs({ value: "Click to Continue", pos: [config.canvasWidth / 2, config.canvasHeight / 2 + 50], center: true })
             return;
         case "lost":
-            canvas.title("Game Lost", [config.canvasWidth / 2 - 150, config.canvasHeight / 2])
+            canvas.title("Game Lost", [config.canvasWidth / 2, config.canvasHeight / 2])
+            canvas.textWithArgs({ value: "Click to Continue", pos: [config.canvasWidth / 2, config.canvasHeight / 2 + 50], center: true })
             return;
         case "finished":
-            canvas.title("Thanks for playing", [config.canvasWidth / 2 - 150, config.canvasHeight / 2])
+            canvas.title("Thanks for playing", [config.canvasWidth / 2, config.canvasHeight / 2])
             return;
     }
 
     drawBricks(game, canvas);
+    if (game.placed.length === 0)
+        canvas.textWithArgs({ value: "Click to place", pos: [config.canvasWidth / 2, config.canvasHeight - 75], size: 24, center: true })
     game.snakes.forEach(snake => {
         if (!snake.isVisible) return;
         canvas.image({
