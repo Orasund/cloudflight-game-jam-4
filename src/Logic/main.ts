@@ -1,12 +1,10 @@
 import { Game } from '../Game/types';
 import { config } from '../config';
 import { Control } from '../control';
-import { Sound } from '../sound';
 import { updateBalls } from './ball';
 import { isGameWon, newGame } from './game';
 import { movePaddle } from './paddle';
 import { updateSnakes } from './snakes';
-import { generateLevel } from './level';
 
 
 
@@ -43,7 +41,7 @@ function clickedBricks(game: Game, controls: Control) {
         }
     }
 }
-export function tick(control: Control, sound: Sound, game: Game) {
+export function tick(control: Control, game: Game) {
     if (game.end!!) {
 
         if (game.end === "lost" && control.mouseDown) {
