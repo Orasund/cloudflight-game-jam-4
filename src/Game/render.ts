@@ -36,7 +36,13 @@ function drawBricks(game: Game, canvas: Canvas) {
 
 
 export function toCanvas(game: Game, canvas: Canvas) {
-    //ctx.clearRect(0, 0, config.canvasWidth, config.canvasHeight);
+    if (game.end!!)
+        canvas.rect({
+            center: [config.canvasWidth / 2, config.canvasHeight / 2],
+            width: config.canvasWidth,
+            height: config.canvasHeight,
+            color: "#FFDE59"
+        });
 
 
 
