@@ -27,5 +27,4 @@ export function resetLevelSeconds() {
 export function stopTimer(level: number) {
     levelTimes[level] = seconds;
     isInMenu = true;
-    console.log(levelTimes)
 }
