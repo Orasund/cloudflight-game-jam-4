@@ -63,6 +63,7 @@ export function tick(control: Control, sound: Sound, game: Game) {
             game.nextGameIsReady = true
         else if (game.end === "lost" && control.mouseDown && game.nextGameIsReady) {
             game = newGame(game.level)
+            resetLevelSeconds()
         } else if (game.end === "won" && control.mouseDown && game.nextGameIsReady) {
             game = newGame(game.level + 1)
             resetLevelSeconds()
