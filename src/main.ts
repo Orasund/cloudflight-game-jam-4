@@ -7,6 +7,7 @@ import { newGame } from './Logic/game';
 import { tick } from './Logic/main';
 import { Sound } from './sound';
 import { Canvas } from './canvas';
+import { counter } from './Logic/counter';
 
 //Create Canvas
 const container = document.querySelector('#app') as HTMLDivElement;
@@ -14,6 +15,23 @@ const canvas = document.createElement('canvas');
 canvas.width = config.canvasWidth;
 canvas.height = config.canvasHeight;
 container.append(canvas);
+container.appendChild(counter)
+// let counter = document.createElement('div')
+// counter.style.color = "black"
+// counter.setAttribute("id", 'seconds-counter');
+
+// container.appendChild(counter)
+
+// export var seconds = 0;
+
+// function incrementSeconds() {
+//     var el = document.getElementById('seconds-counter');
+
+//     seconds += 1;
+//     el.innerText = "Your time " + seconds;
+// }
+
+// var cancel = setInterval(incrementSeconds, 1000);
 
 //Initiate State
 let game: Game = newGame(0);

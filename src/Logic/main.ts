@@ -8,6 +8,7 @@ import { updateSnakes } from './snakes';
 import { inArea } from './util';
 import { Sound } from '../sound';
 import { ImageSource } from '../Game/imageSource';
+import { resetLevelSeconds, seconds } from './counter';
 
 
 
@@ -55,11 +56,13 @@ export function tick(control: Control, sound: Sound, game: Game) {
         musicPlaying = true;
     }
     if (game.end!!) {
+        stopTimer()
 
         if (game.end === "lost" && control.mouseDown) {
             game = newGame(game.level)
         } else if (game.end === "won" && control.mouseDown) {
             game = newGame(game.level + 1)
+            resetLevelSeconds()
         }
         return game
     }
@@ -73,3 +76,5 @@ export function tick(control: Control, sound: Sound, game: Game) {
     if (isGameWon(game)) gameWon(game, sound);
     return game;
 }
+
+
