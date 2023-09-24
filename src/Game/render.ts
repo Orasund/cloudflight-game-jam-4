@@ -35,10 +35,10 @@ function drawBricks(game: Game, canvas: Canvas) {
 }
 
 
-export function toCanvas(game: Game, ctx: CanvasRenderingContext2D) {
-    ctx.clearRect(0, 0, config.canvasWidth, config.canvasHeight);
+export function toCanvas(game: Game, canvas: Canvas) {
+    //ctx.clearRect(0, 0, config.canvasWidth, config.canvasHeight);
 
-    const canvas = new Canvas(ctx);
+
 
 
     switch (game.end) {
@@ -51,7 +51,10 @@ export function toCanvas(game: Game, ctx: CanvasRenderingContext2D) {
             canvas.textWithArgs({ value: "Click to Continue", pos: [config.canvasWidth / 2, config.canvasHeight / 2 + 50], center: true })
             return;
         case "finished":
-            canvas.title("Thanks for playing", [config.canvasWidth / 2, config.canvasHeight / 2])
+            canvas.title("Thanks", [config.canvasWidth / 2, config.canvasHeight / 2 - 50])
+            canvas.title("for", [config.canvasWidth / 2, config.canvasHeight / 2])
+            canvas.title("playing", [config.canvasWidth / 2, config.canvasHeight / 2 + 50])
+
             return;
     }
 

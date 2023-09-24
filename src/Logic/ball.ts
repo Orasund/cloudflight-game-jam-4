@@ -49,11 +49,11 @@ export function collide_with_bricks(game: Game, sound: Sound, ball: { x: number,
                         sound.play(SoundSource.SnakeCollide);
                     else {
                         const rand = Math.random();
-                        if (rand < 0.7)
+                        if (rand < 0.85)
                             sound.play(SoundSource.Collide);
-                        else if (rand < 0.8)
+                        else if (rand < 0.90)
                             sound.play(SoundSource.Chicken1);
-                        else if (rand < 0.9)
+                        else if (rand < 0.95)
                             sound.play(SoundSource.Chicken2);
                         else
                             sound.play(SoundSource.Chicken3);
