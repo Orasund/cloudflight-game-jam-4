@@ -59,7 +59,7 @@ export function newBall(pos: number[]): Ball {
 
 export function addFurniture(pos: number[], game: Game) {
     const [x, y] = pos;
-    const rand = Math.floor(Math.random() * 4)
+    const rand = Math.floor(Math.random() * 5)
     let image;
     switch (rand) {
         case 0:
@@ -70,6 +70,9 @@ export function addFurniture(pos: number[], game: Game) {
             break;
         case 2:
             image = ImageSource.Furniture3;
+            break;
+        case 3:
+            image = ImageSource.Furniture5;
             break;
         default:
             image = ImageSource.Furniture4;

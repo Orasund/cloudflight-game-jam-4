@@ -9,5 +9,6 @@ export enum ImageSource {
     Furniture1 = "furniture1",
     Furniture2 = "furniture2",
     Furniture3 = "furniture3",
-    Furniture4 = "furniture4"
+    Furniture4 = "furniture4",
+    Furniture5 = "furniture5"
 }

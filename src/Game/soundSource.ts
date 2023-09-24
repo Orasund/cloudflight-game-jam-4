@@ -6,5 +6,6 @@ export enum SoundSource {
     Chicken1 = "chicken1",
     Chicken2 = "chicken2",
     Chicken3 = "chicken3",
+    Chicken4 = "chicken4",
     Song = "song"
 }
