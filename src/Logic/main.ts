@@ -8,7 +8,7 @@ import { updateSnakes } from './snakes';
 import { inArea } from './util';
 import { Sound } from '../sound';
 import { ImageSource } from '../Game/imageSource';
-import { resetLevelSeconds, seconds } from './counter';
+import { resetLevelSeconds, seconds, stopTimer } from './counter';
 
 
 
@@ -66,7 +66,6 @@ export function tick(control: Control, sound: Sound, game: Game) {
         }
         return game
     }
-
     game.currentTick++;
     movePaddle(control, game);
     updateBalls(sound, game)

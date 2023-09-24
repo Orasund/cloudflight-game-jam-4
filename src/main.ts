@@ -16,22 +16,7 @@ canvas.width = config.canvasWidth;
 canvas.height = config.canvasHeight;
 container.append(canvas);
 container.appendChild(counter)
-// let counter = document.createElement('div')
-// counter.style.color = "black"
-// counter.setAttribute("id", 'seconds-counter');
 
-// container.appendChild(counter)
-
-// export var seconds = 0;
-
-// function incrementSeconds() {
-//     var el = document.getElementById('seconds-counter');
-
-//     seconds += 1;
-//     el.innerText = "Your time " + seconds;
-// }
-
-// var cancel = setInterval(incrementSeconds, 1000);
 
 //Initiate State
 let game: Game = newGame(0);
