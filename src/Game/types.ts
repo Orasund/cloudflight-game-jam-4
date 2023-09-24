@@ -1,3 +1,5 @@
+import { ImageSource } from "./imageSource";
+
 export interface Brick {
     x: number,
     y: number,
@@ -36,6 +38,6 @@ export interface Game {
     balls: Ball[],
     end: "won" | "lost" | "finished" | undefined,
     currentTick: number,
-    placed: { x: number, y: number }[],
+    placed: { x: number, y: number, image: ImageSource }[],
     level: number
 }

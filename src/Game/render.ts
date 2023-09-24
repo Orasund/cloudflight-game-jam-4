@@ -18,7 +18,10 @@ function drawBricks(game: Game, canvas: Canvas) {
             }
             if (game.bricks[c][r].cellType == "chair" &&
                 game.bricks[c][r].isVisible == true) {
-                brick_source = ImageSource.Chair;
+                brick_source =
+                    game.placed
+                        .find(it => it.y === c && it.x === r)
+                        ?.image ?? ImageSource.Furniture1;
             }
 
             canvas.image({
