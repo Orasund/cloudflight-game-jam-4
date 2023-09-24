@@ -23,6 +23,6 @@ export const config = {
     levelResolution: 1,
     maxPlacedObsticales: 5,
     ballSpeed: 1.5,
-    brickRejectForce: 4,
-    chickenAttractForce: 3
+    brickRejectForce: 5,
+    chickenAttractForce: 4
 }
