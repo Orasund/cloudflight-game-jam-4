@@ -51,7 +51,12 @@ export function noCreatureInArea(pos: number[], width: number, height: number, g
         inArea([ball.x, ball.y], { pos, width: width + config.ballRadius * 2, height: height + config.ballRadius * 2 })
     ).length == 0)
 }
+let musicPlaying = false;
 export function tick(control: Control, sound: Sound, game: Game) {
+    if (control.mouseDown && !musicPlaying) {
+        sound.playSong();
+        musicPlaying = true;
+    }
     if (game.end!!) {
 
         if (game.end === "lost" && control.mouseDown) {

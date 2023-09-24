@@ -43,6 +43,7 @@ function onKeyup(e: { code: string; }) {
 //Start gameloop
 const ctx = canvas.getContext("2d")!
 const can = new Canvas(ctx);
+
 function nextFrame() {
     game = tick(control, sound, game);
     draw.toCanvas(game, can);

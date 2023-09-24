@@ -30,4 +30,10 @@ export class Sound {
         audio.load();
         audio.play();
     }
+
+    playSong() {
+        const audio = this.pool.get(SoundSource.Song)!
+        audio.load();
+        audio.play();
+    }
 }
