@@ -25,20 +25,22 @@ export function collide_with_bricks(game: Game, sound: Sound, ball: { x: number,
                     const centerX = b.x + config.brickWidth / 2;
                     const centerY = b.y + config.brickHeight / 2;
 
+                    const chickenForce = is_snake ? chickenForceAt([centerX, centerY], game) : [0, 0]
                     const [dx, dy] =
                         withRandomness(
                             scale(
                                 normalize(
-                                    addVecs(
-                                        forceAt([centerX, centerY], game),
-                                        normalize([ball.x - centerX, ball.y - centerY])
+                                    addVecs(chickenForce,
+                                        addVecs(
+                                            forceAt([centerX, centerY], game),
+                                            normalize([ball.x - centerX, ball.y - centerY])
+                                        )
                                     )
                                 ),
                                 config.ballSpeed
                             ),
                             0.1
                         )
-
 
 
                     ball.dx = dx;
@@ -113,6 +115,15 @@ export function forceAt(pos: number[], game: Game): number[] {
             const brick = game.bricks[placed.y][placed.x];
             const vec = [x - brick.x, y - brick.y];
             return scale(normalize(vec), config.brickRejectForce / lengthOf(vec))
+        })
+        .reduce(addVecs, [0, 0])
+}
+export function chickenForceAt(pos: number[], game: Game): number[] {
+    const [x, y] = pos;
+    return game.balls
+        .map(ball => {
+            const vec = [ball.x - x, ball.y - y];
+            return scale(normalize(vec), config.chickenAttractForce / lengthOf(vec))
         })
         .reduce(addVecs, [0, 0])
 }
