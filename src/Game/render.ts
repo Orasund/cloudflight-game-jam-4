@@ -2,7 +2,7 @@ import { Canvas } from "../canvas";
 import { Game } from "./types";
 import { config } from "../config";
 import { ImageSource } from "./imageSource";
-import { time_text } from "../Logic/counter";
+import { getLevelTimesString, levelTimes, time_text, total_game_seconds } from "../Logic/counter";
 
 function drawBricks(game: Game, canvas: Canvas) {
     for (var c = 0; c < config.brickColumnCount; c++) {
@@ -72,6 +72,15 @@ export function toCanvas(game: Game, canvas: Canvas) {
             canvas.title("Thanks", [config.canvasWidth / 2, config.canvasHeight / 2 - 50])
             canvas.title("for", [config.canvasWidth / 2, config.canvasHeight / 2])
             canvas.title("playing", [config.canvasWidth / 2, config.canvasHeight / 2 + 50])
+            canvas.text("Total time " + total_game_seconds, [config.canvasWidth / 4, config.canvasHeight / 2 + 120])
+            let yOffset = 140
+            for (const [key, value] of Object.entries(levelTimes)) {
+                console.log(key, value);
+                canvas.text("Level " + key + " : " + value + " s", [config.canvasWidth / 4, config.canvasHeight / 2 + yOffset])
+                yOffset += 20;
+
+            }
+
             return;
     }
 
