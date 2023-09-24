@@ -18,6 +18,7 @@ export class Sound {
             .connect(this.ctx.destination);
         audio.src = "assets/sounds/" + source + ".mp3";
         audio.oncanplay = () => this.amountLoaded++
+
         return audio;
     }
 
@@ -33,6 +34,7 @@ export class Sound {
 
     playSong() {
         const audio = this.pool.get(SoundSource.Song)!
+        audio.onended = () => { audio.load(); audio.play() }
         audio.load();
         audio.play();
     }
