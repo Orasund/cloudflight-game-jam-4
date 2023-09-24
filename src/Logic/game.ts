@@ -16,7 +16,7 @@ export function newGame(lv: number): Game {
         lives: 3,
         balls: [],
         snakes: [],
-        end: "new Game",
+        end: "newGame" as "newGame",
         currentTick: 0,
         placed: [],
         level: lv

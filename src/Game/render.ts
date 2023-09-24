@@ -60,7 +60,7 @@ export function toCanvas(game: Game, canvas: Canvas) {
             canvas.title("Game Lost", [config.canvasWidth / 2, config.canvasHeight / 2])
             canvas.textWithArgs({ value: "Click to Continue", pos: [config.canvasWidth / 2, config.canvasHeight / 2 + 50], center: true })
             return;
-        case "new Game":
+        case "newGame":
             canvas.title("Help the", [config.canvasWidth / 2, config.canvasHeight / 2 - 150])
             canvas.title("Chickens", [config.canvasWidth / 2, config.canvasHeight / 2 - 75])
             canvas.title("Escape!", [config.canvasWidth / 2, config.canvasHeight / 2])
