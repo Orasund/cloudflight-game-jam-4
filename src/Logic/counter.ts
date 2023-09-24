@@ -16,7 +16,7 @@ function incrementSeconds() {
 
 }
 
-var cancel = setInterval(incrementSeconds, 1000);
+setInterval(incrementSeconds, 1000);
 
 
 export function resetLevelSeconds() {
