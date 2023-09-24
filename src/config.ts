@@ -24,4 +24,5 @@ export const config = {
     maxPlacedObsticales: 6,
     ballSpeed: 1.5,
     brickRejectForce: 4,
+    chickenAttractForce: 3
 }
