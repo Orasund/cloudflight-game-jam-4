@@ -18,6 +18,7 @@ container.append(canvas);
 
 //Initiate State
 let game: Game = newGame(0);
+game.end = "newGame";
 let control: Control = new Control();
 let sound: Sound = new Sound();
 

@@ -21,7 +21,7 @@ export const config = {
 
     chickensPerCell: 5,
     levelResolution: 1,
-    maxPlacedObsticales: 6,
+    maxPlacedObsticales: 5,
     ballSpeed: 1.5,
     brickRejectForce: 4,
     chickenAttractForce: 3
