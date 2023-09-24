@@ -7,7 +7,6 @@ import { newGame } from './Logic/game';
 import { tick } from './Logic/main';
 import { Sound } from './sound';
 import { Canvas } from './canvas';
-import { counter } from './Logic/counter';
 
 //Create Canvas
 const container = document.querySelector('#app') as HTMLDivElement;
@@ -15,7 +14,6 @@ const canvas = document.createElement('canvas');
 canvas.width = config.canvasWidth;
 canvas.height = config.canvasHeight;
 container.append(canvas);
-container.appendChild(counter)
 
 
 //Initiate State

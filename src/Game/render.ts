@@ -2,6 +2,7 @@ import { Canvas } from "../canvas";
 import { Game } from "./types";
 import { config } from "../config";
 import { ImageSource } from "./imageSource";
+import { time_text } from "../Logic/counter";
 
 function drawBricks(game: Game, canvas: Canvas) {
     for (var c = 0; c < config.brickColumnCount; c++) {
@@ -72,6 +73,7 @@ export function toCanvas(game: Game, canvas: Canvas) {
             return;
     }
 
+
     drawBricks(game, canvas);
     if (game.placed.length === 0)
         canvas.textWithArgs({ value: "Click to place", pos: [config.canvasWidth / 2, config.canvasHeight - 75], size: 24, center: true })
@@ -93,4 +95,7 @@ export function toCanvas(game: Game, canvas: Canvas) {
             height: config.ballRadius * 2,
         })
     })
+    // show time in canvas
+    canvas.rect({ center: [20, config.canvasHeight - 20], width: 170, height: 17, color: "white" })
+    canvas.textWithArgs({ value: time_text, pos: [5, config.canvasHeight - 15], color: "black" })
 }
