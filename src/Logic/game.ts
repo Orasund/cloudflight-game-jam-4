@@ -20,7 +20,8 @@ export function newGame(lv: number): Game {
         end: "newGame" as "newGame",
         currentTick: 0,
         placed: [],
-        level: lv
+        level: lv,
+        nextGameIsReady: false
     }
     return generateLevel(lv, game);
 }
@@ -60,7 +61,7 @@ export function newBall(pos: number[]): Ball {
 
 export function addFurniture(pos: number[], game: Game) {
     const [x, y] = pos;
-    const rand = Math.floor(Math.random() * 5)
+    const rand = Math.floor(Math.random() * 6)
     let image;
     switch (rand) {
         case 0:
@@ -74,6 +75,9 @@ export function addFurniture(pos: number[], game: Game) {
             break;
         case 3:
             image = ImageSource.Furniture5;
+            break;
+        case 4:
+            image = ImageSource.Furniture6;
             break;
         default:
             image = ImageSource.Furniture4;

@@ -59,12 +59,14 @@ export function tick(control: Control, sound: Sound, game: Game) {
         stopTimer(game.level)
         game.levelSeconds = seconds
 
-        if (game.end === "lost" && control.mouseDown) {
+        if (!control.mouseDown)
+            game.nextGameIsReady = true
+        else if (game.end === "lost" && control.mouseDown && game.nextGameIsReady) {
             game = newGame(game.level)
-        } else if (game.end === "won" && control.mouseDown) {
+        } else if (game.end === "won" && control.mouseDown && game.nextGameIsReady) {
             game = newGame(game.level + 1)
             resetLevelSeconds()
-        } else if (game.end === "newGame" && control.mouseDown) {
+        } else if (game.end === "newGame" && control.mouseDown && game.nextGameIsReady) {
             game.end = undefined;
             resetLevelSeconds()
         }

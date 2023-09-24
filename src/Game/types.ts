@@ -40,5 +40,6 @@ export interface Game {
     end: "newGame" | "won" | "lost" | "finished" | undefined,
     currentTick: number,
     placed: { x: number, y: number, image: ImageSource }[],
-    level: number
+    level: number,
+    nextGameIsReady: boolean
 }
