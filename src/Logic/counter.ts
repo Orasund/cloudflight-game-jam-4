@@ -2,6 +2,8 @@ export let seconds = 0;
 let isInMenu = false;
 export let time_text = "Your time 0"
 
+export let levelTimes = {}
+
 function incrementSeconds() {
     // var el = document.getElementById('seconds-counter');
 
@@ -22,6 +24,8 @@ export function resetLevelSeconds() {
     isInMenu = false;
 
 }
-export function stopTimer() {
+export function stopTimer(level: number) {
+    levelTimes[level] = seconds;
     isInMenu = true;
+    console.log(levelTimes)
 }

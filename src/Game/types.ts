@@ -30,6 +30,7 @@ export interface Paddle {
     x: number
 }
 export interface Game {
+    levelSeconds: number;
     snakes: Snake[],
     paddle: Paddle,
     bricks: Brick[][],

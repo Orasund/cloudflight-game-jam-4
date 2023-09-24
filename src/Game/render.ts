@@ -55,6 +55,8 @@ export function toCanvas(game: Game, canvas: Canvas) {
         case "won":
             canvas.title("Level Won", [config.canvasWidth / 2, config.canvasHeight / 2])
             canvas.textWithArgs({ value: "Click to Continue", pos: [config.canvasWidth / 2, config.canvasHeight / 2 + 50], center: true })
+            canvas.textWithArgs({ value: time_text, pos: [config.canvasWidth / 2, config.canvasHeight / 2 + 150], center: true })
+
             return;
         case "lost":
             canvas.title("Game Lost", [config.canvasWidth / 2, config.canvasHeight / 2])

@@ -8,7 +8,7 @@ import { updateSnakes } from './snakes';
 import { inArea } from './util';
 import { Sound } from '../sound';
 import { ImageSource } from '../Game/imageSource';
-import { resetLevelSeconds, stopTimer } from './counter';
+import { resetLevelSeconds, seconds, stopTimer } from './counter';
 
 
 
@@ -56,7 +56,8 @@ export function tick(control: Control, sound: Sound, game: Game) {
         musicPlaying = true;
     }
     if (game.end!!) {
-        stopTimer()
+        stopTimer(game.level)
+        game.levelSeconds = seconds
 
         if (game.end === "lost" && control.mouseDown) {
             game = newGame(game.level)

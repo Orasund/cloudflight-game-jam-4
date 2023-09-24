@@ -11,6 +11,7 @@ export function newGame(lv: number): Game {
         paddle: {
             x: (config.canvasWidth - config.paddleWidth) / 2
         },
+        levelSeconds: 0,
         bricks: newBrick(),
         score: 0,
         lives: 3,
