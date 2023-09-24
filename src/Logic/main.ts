@@ -7,7 +7,6 @@ import { movePaddle } from './paddle';
 import { updateSnakes } from './snakes';
 import { inArea } from './util';
 import { Sound } from '../sound';
-import { ImageSource } from '../Game/imageSource';
 import { resetLevelSeconds, seconds, stopTimer } from './counter';
 
 

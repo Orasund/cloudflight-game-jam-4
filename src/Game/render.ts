@@ -2,7 +2,7 @@ import { Canvas } from "../canvas";
 import { Game } from "./types";
 import { config } from "../config";
 import { ImageSource } from "./imageSource";
-import { getLevelTimesString, levelTimes, time_text, total_game_seconds } from "../Logic/counter";
+import { levelTimes, time_text, total_game_seconds } from "../Logic/counter";
 
 function drawBricks(game: Game, canvas: Canvas) {
     for (var c = 0; c < config.brickColumnCount; c++) {
