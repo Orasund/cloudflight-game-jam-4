@@ -44,7 +44,7 @@ export function toCanvas(game: Game, canvas: Canvas) {
             center: [config.canvasWidth / 2, config.canvasHeight / 2],
             width: config.canvasWidth,
             height: config.canvasHeight,
-            color: "#FFDE59"
+            color: game.end === "lost" ? "#DF603E" : "#FFDE59"
         });
 
 
