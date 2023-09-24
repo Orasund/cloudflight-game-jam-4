@@ -2,7 +2,7 @@ import { Game } from '../Game/types';
 import { config } from '../config';
 import { Control } from '../control';
 import { updateBalls } from './ball';
-import { gameWon, isGameWon, newGame } from './game';
+import { addFurniture, gameWon, isGameWon, newGame } from './game';
 import { movePaddle } from './paddle';
 import { updateSnakes } from './snakes';
 import { inArea } from './util';
@@ -33,27 +33,7 @@ function clickedBricks(game: Game, controls: Control) {
                 //lastClickTickDiff > 3 * 60
             ) {
                 game.bricks[c][r].isVisible = true;
-                const rand = Math.floor(Math.random() * 4)
-                let image;
-                switch (rand) {
-                    case 0:
-                        image = ImageSource.Furniture1;
-                        break;
-                    case 1:
-                        image = ImageSource.Furniture2;
-                        break;
-                    case 2:
-                        image = ImageSource.Furniture3;
-                        break;
-                    default:
-                        image = ImageSource.Furniture4;
-                        break;
-                }
-                game.placed.push({ y: c, x: r, image: image });
-                if (game.placed.length > config.maxPlacedObsticales) {
-                    const removed = game.placed.shift()!;
-                    game.bricks[removed.y][removed.x].isVisible = false;
-                }
+                addFurniture([r, c], game);
                 //game.bricks[c][r].lastClicKTick = game.currentTick;
             }
 

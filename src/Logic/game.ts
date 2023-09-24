@@ -1,3 +1,4 @@
+import { ImageSource } from "../Game/imageSource";
 import { SoundSource } from "../Game/soundSource";
 import { Ball, Brick, CellType, Game, Snake } from "../Game/types";
 import { config } from "../config";
@@ -56,6 +57,30 @@ export function newBall(pos: number[]): Ball {
     }
 }
 
+export function addFurniture(pos: number[], game: Game) {
+    const [x, y] = pos;
+    const rand = Math.floor(Math.random() * 4)
+    let image;
+    switch (rand) {
+        case 0:
+            image = ImageSource.Furniture1;
+            break;
+        case 1:
+            image = ImageSource.Furniture2;
+            break;
+        case 2:
+            image = ImageSource.Furniture3;
+            break;
+        default:
+            image = ImageSource.Furniture4;
+            break;
+    }
+    game.placed.push({ y: y, x: x, image: image });
+    if (game.placed.length > config.maxPlacedObsticales) {
+        const removed = game.placed.shift()!;
+        game.bricks[removed.y][removed.x].isVisible = false;
+    }
+}
 
 export function newSnake(pos: number[]): Snake {
     const [x, y] = pos;

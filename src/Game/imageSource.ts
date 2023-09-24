@@ -6,7 +6,6 @@ export enum ImageSource {
     BrickInvisible = "invisble_brick",
     RoundChicken = "roundChicken",
     Lava = "lava",
-    Chair = "chair",
     Furniture1 = "furniture1",
     Furniture2 = "furniture2",
     Furniture3 = "furniture3",
